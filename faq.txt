@@ -1,0 +1,11 @@
+1) How to copy files/data from my local pc to a node in the cluster?
+
+	a) Using clipboard.
+		You can use copy paste file contents just as you do in the local pc. But this is only suitable for small files and when there are only a few. 
+	b) Using scp or sftp.
+		Use scp command or a sftp session to copy your files from local machine to cluster.
+	c) Using git. 
+		Create a git repo in your local pc and push the files and data to remote. You can clone that repo and pull updates in the cluster.
+
+	d) Using Globus (https://www.globus.org/).
+		Globus is a great tool to trasnfer especailly data among clusters and your local pc. However this service might not be avalibale on all clusters (Indiana Jetstream2 has support). 
