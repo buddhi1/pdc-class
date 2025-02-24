@@ -1,4 +1,4 @@
-CC = nvcc -arch=sm_89	#compiler
+CC = nvcc	#compiler
 
 SOURCES = info.cu warp.cu mem.cu bankconf.cu
 # object file names are same as SOURCES, excluding .cu extension
