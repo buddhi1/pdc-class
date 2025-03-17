@@ -1,0 +1,60 @@
+(tf-gpu) [c003: cus_train]$ ./n1.sh 
+2025-03-17 01:36:19.181364: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-03-17 01:36:19.182143: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.
+2025-03-17 01:36:19.185549: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.
+2025-03-17 01:36:19.194667: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1742193379.209122  272238 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1742193379.213644  272238 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1742193379.226069  272238 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1742193379.226087  272238 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1742193379.226089  272238 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1742193379.226091  272238 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-03-17 01:36:19.230025: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2025-03-17 01:36:22.071633: E external/local_xla/xla/stream_executor/cuda/cuda_platform.cc:51] failed call to cuInit: INTERNAL: CUDA error: Failed call to cuInit: UNKNOWN ERROR (303)
+2025-03-17 01:36:22.074890: I external/local_xla/xla/tsl/distributed_runtime/coordination/coordination_service.cc:637] Initializing CoordinationService
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1742193382.075985  272238 grpc_server_lib.cc:463] Started server with target: grpc://c003:2222
+2025-03-17 01:36:22.083810: I external/local_xla/xla/tsl/distributed_runtime/coordination/coordination_service.cc:378] /job:worker/replica:0/task:0 has connected to coordination service. Incarnation: 12342077017534424067
+2025-03-17 01:36:22.083830: I external/local_xla/xla/tsl/distributed_runtime/coordination/coordination_service.cc:816] Waiting for 1/2 tasks to connect.
+2025-03-17 01:36:22.083833: I external/local_xla/xla/tsl/distributed_runtime/coordination/coordination_service.cc:819] Example stragglers:
+/job:worker/replica:0/task:1
+I0000 00:00:1742193382.083943  272238 coordination_service_agent.cc:369] Coordination agent has successfully connected.
+2025-03-17 01:37:04.529307: I external/local_xla/xla/tsl/distributed_runtime/coordination/coordination_service.cc:378] /job:worker/replica:0/task:1 has connected to coordination service. Incarnation: 456478768943151826
+2025-03-17 01:37:04.529323: I external/local_xla/xla/tsl/distributed_runtime/coordination/coordination_service.cc:816] Waiting for 0/2 tasks to connect.
+Number of workers: 2
+2025-03-17 01:37:05.320856: W tensorflow/core/framework/dataset.cc:993] Input of GeneratorDatasetOp::Dataset will not be optimized because the dataset does not implement the AsGraphDefInternal() method needed to apply optimizations.
+Epoch: 0, accuracy: nan, train_loss: 0.259240.
+2025-03-17 01:38:00.014919: W tensorflow/core/framework/dataset.cc:993] Input of GeneratorDatasetOp::Dataset will not be optimized because the dataset does not implement the AsGraphDefInternal() method needed to apply optimizations.
+Epoch: 1, accuracy: nan, train_loss: 0.080813.
+2025-03-17 01:40:21.836664: W tensorflow/core/framework/dataset.cc:993] Input of GeneratorDatasetOp::Dataset will not be optimized because the dataset does not implement the AsGraphDefInternal() method needed to apply optimizations.
+Epoch: 2, accuracy: nan, train_loss: 0.054156.
+
+
+
+(tf-gpu) [c004: cus_train]$ ./n2.sh 
+2025-03-17 01:37:01.569076: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-03-17 01:37:01.569823: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.
+2025-03-17 01:37:01.573270: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.
+2025-03-17 01:37:01.582293: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1742193421.596233  498986 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1742193421.600657  498986 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1742193421.612977  498986 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1742193421.612995  498986 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1742193421.612997  498986 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1742193421.612999  498986 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-03-17 01:37:01.616841: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2025-03-17 01:37:04.522505: E external/local_xla/xla/stream_executor/cuda/cuda_platform.cc:51] failed call to cuInit: INTERNAL: CUDA error: Failed call to cuInit: UNKNOWN ERROR (303)
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1742193424.526820  498986 grpc_server_lib.cc:463] Started server with target: grpc://c004:2222
+I0000 00:00:1742193424.530587  498986 coordination_service_agent.cc:369] Coordination agent has successfully connected.
+Number of workers: 2
+2025-03-17 01:37:05.331044: W tensorflow/core/framework/dataset.cc:993] Input of GeneratorDatasetOp::Dataset will not be optimized because the dataset does not implement the AsGraphDefInternal() method needed to apply optimizations.
+Epoch: 0, accuracy: nan, train_loss: 0.259240.
+2025-03-17 01:38:00.012209: W tensorflow/core/framework/dataset.cc:993] Input of GeneratorDatasetOp::Dataset will not be optimized because the dataset does not implement the AsGraphDefInternal() method needed to apply optimizations.
+Epoch: 1, accuracy: nan, train_loss: 0.080813.
+2025-03-17 01:40:21.833593: W tensorflow/core/framework/dataset.cc:993] Input of GeneratorDatasetOp::Dataset will not be optimized because the dataset does not implement the AsGraphDefInternal() method needed to apply optimizations.
+Epoch: 2, accuracy: nan, train_loss: 0.054156.

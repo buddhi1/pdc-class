@@ -1,0 +1,16 @@
+#!/bin/bash
+##
+#SBATCH --job-name=mnist_parallel
+#SBATCH --output=out.ext
+#SBATCH --partition=gpu2v100
+#SBATCH --gres=gres:gpu:2
+#SBATCH --time=00:30:00
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=
+#SBATCH --ntasks=1
+#SBATCH --nodes=1
+
+# Load one of these
+module load anaconda3
+conda activate tf-gpu
+python mnist_parallel.py

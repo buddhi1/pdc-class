@@ -1,0 +1,431 @@
+(tf-gpu) buddhi@dgxa100:~/HPML-2025-handson/dataParallel/1_node-n_gpu$ python mnist_parallel.py 
+2025-03-10 18:33:40.887470: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:485] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2025-03-10 18:33:40.900675: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:8454] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2025-03-10 18:33:40.904879: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1452] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2025-03-10 18:33:40.914347: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE4.1 SSE4.2 AVX AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-datasets/mnist.npz
+11490434/11490434 ━━━━━━━━━━━━━━━━━━━━ 0s 0us/step 
+2025-03-10 18:33:44.836273: I tensorflow/core/common_runtime/gpu/gpu_device.cc:2021] Created device /device:GPU:0 with 67316 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:07:00.0, compute capability: 8.0
+2025-03-10 18:33:44.838366: I tensorflow/core/common_runtime/gpu/gpu_device.cc:2021] Created device /device:GPU:1 with 78670 MB memory:  -> device: 1, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:0f:00.0, compute capability: 8.0
+2025-03-10 18:33:44.840171: I tensorflow/core/common_runtime/gpu/gpu_device.cc:2021] Created device /device:GPU:2 with 78670 MB memory:  -> device: 2, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:47:00.0, compute capability: 8.0
+2025-03-10 18:33:44.841970: I tensorflow/core/common_runtime/gpu/gpu_device.cc:2021] Created device /device:GPU:3 with 78670 MB memory:  -> device: 3, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:4e:00.0, compute capability: 8.0
+2025-03-10 18:33:44.843980: I tensorflow/core/common_runtime/gpu/gpu_device.cc:2021] Created device /device:GPU:4 with 78670 MB memory:  -> device: 4, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:87:00.0, compute capability: 8.0
+2025-03-10 18:33:44.845777: I tensorflow/core/common_runtime/gpu/gpu_device.cc:2021] Created device /device:GPU:5 with 78670 MB memory:  -> device: 5, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:90:00.0, compute capability: 8.0
+2025-03-10 18:33:44.847639: I tensorflow/core/common_runtime/gpu/gpu_device.cc:2021] Created device /device:GPU:6 with 78670 MB memory:  -> device: 6, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:b7:00.0, compute capability: 8.0
+2025-03-10 18:33:44.849392: I tensorflow/core/common_runtime/gpu/gpu_device.cc:2021] Created device /device:GPU:7 with 78670 MB memory:  -> device: 7, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:bd:00.0, compute capability: 8.0
+[name: "/device:CPU:0"
+device_type: "CPU"
+memory_limit: 268435456
+locality {
+}
+incarnation: 8578165998156107693
+xla_global_id: -1
+, name: "/device:GPU:0"
+device_type: "GPU"
+memory_limit: 70586073088
+locality {
+  bus_id: 4
+  numa_node: 3
+  links {
+    link {
+      device_id: 1
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 2
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 3
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 4
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 5
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 6
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 7
+      type: "StreamExecutor"
+      strength: 1
+    }
+  }
+}
+incarnation: 17865852223481066357
+physical_device_desc: "device: 0, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:07:00.0, compute capability: 8.0"
+xla_global_id: 416903419
+, name: "/device:GPU:1"
+device_type: "GPU"
+memory_limit: 82491604992
+locality {
+  bus_id: 4
+  numa_node: 3
+  links {
+    link {
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 2
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 3
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 4
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 5
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 6
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 7
+      type: "StreamExecutor"
+      strength: 1
+    }
+  }
+}
+incarnation: 915162132743909375
+physical_device_desc: "device: 1, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:0f:00.0, compute capability: 8.0"
+xla_global_id: 2144165316
+, name: "/device:GPU:2"
+device_type: "GPU"
+memory_limit: 82491604992
+locality {
+  bus_id: 2
+  numa_node: 1
+  links {
+    link {
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 1
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 3
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 4
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 5
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 6
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 7
+      type: "StreamExecutor"
+      strength: 1
+    }
+  }
+}
+incarnation: 654798981278743551
+physical_device_desc: "device: 2, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:47:00.0, compute capability: 8.0"
+xla_global_id: 1651660799
+, name: "/device:GPU:3"
+device_type: "GPU"
+memory_limit: 82491604992
+locality {
+  bus_id: 2
+  numa_node: 1
+  links {
+    link {
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 1
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 2
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 4
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 5
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 6
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 7
+      type: "StreamExecutor"
+      strength: 1
+    }
+  }
+}
+incarnation: 5869591571624229450
+physical_device_desc: "device: 3, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:4e:00.0, compute capability: 8.0"
+xla_global_id: 878896533
+, name: "/device:GPU:4"
+device_type: "GPU"
+memory_limit: 82491604992
+locality {
+  bus_id: 8
+  numa_node: 7
+  links {
+    link {
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 1
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 2
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 3
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 5
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 6
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 7
+      type: "StreamExecutor"
+      strength: 1
+    }
+  }
+}
+incarnation: 16733837288207011302
+physical_device_desc: "device: 4, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:87:00.0, compute capability: 8.0"
+xla_global_id: 615190153
+, name: "/device:GPU:5"
+device_type: "GPU"
+memory_limit: 82491604992
+locality {
+  bus_id: 8
+  numa_node: 7
+  links {
+    link {
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 1
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 2
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 3
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 4
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 6
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 7
+      type: "StreamExecutor"
+      strength: 1
+    }
+  }
+}
+incarnation: 4680321483829789292
+physical_device_desc: "device: 5, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:90:00.0, compute capability: 8.0"
+xla_global_id: 1769886423
+, name: "/device:GPU:6"
+device_type: "GPU"
+memory_limit: 82491604992
+locality {
+  bus_id: 6
+  numa_node: 5
+  links {
+    link {
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 1
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 2
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 3
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 4
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 5
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 7
+      type: "StreamExecutor"
+      strength: 1
+    }
+  }
+}
+incarnation: 16082938717964211505
+physical_device_desc: "device: 6, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:b7:00.0, compute capability: 8.0"
+xla_global_id: 893286608
+, name: "/device:GPU:7"
+device_type: "GPU"
+memory_limit: 82491604992
+locality {
+  bus_id: 6
+  numa_node: 5
+  links {
+    link {
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 1
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 2
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 3
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 4
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 5
+      type: "StreamExecutor"
+      strength: 1
+    }
+    link {
+      device_id: 6
+      type: "StreamExecutor"
+      strength: 1
+    }
+  }
+}
+incarnation: 12382816115408578646
+physical_device_desc: "device: 7, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:bd:00.0, compute capability: 8.0"
+xla_global_id: 2099794689
+]
+
+Tensorflow Version: 2.17.0
+2025-03-10 18:33:44.929055: I tensorflow/core/common_runtime/gpu/gpu_device.cc:2021] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 67316 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:07:00.0, compute capability: 8.0
+2025-03-10 18:33:44.930437: I tensorflow/core/common_runtime/gpu/gpu_device.cc:2021] Created device /job:localhost/replica:0/task:0/device:GPU:1 with 78670 MB memory:  -> device: 1, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:0f:00.0, compute capability: 8.0
+2025-03-10 18:33:44.931810: I tensorflow/core/common_runtime/gpu/gpu_device.cc:2021] Created device /job:localhost/replica:0/task:0/device:GPU:2 with 78670 MB memory:  -> device: 2, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:47:00.0, compute capability: 8.0
+2025-03-10 18:33:44.933173: I tensorflow/core/common_runtime/gpu/gpu_device.cc:2021] Created device /job:localhost/replica:0/task:0/device:GPU:3 with 78670 MB memory:  -> device: 3, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:4e:00.0, compute capability: 8.0
+2025-03-10 18:33:44.934545: I tensorflow/core/common_runtime/gpu/gpu_device.cc:2021] Created device /job:localhost/replica:0/task:0/device:GPU:4 with 78670 MB memory:  -> device: 4, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:87:00.0, compute capability: 8.0
+2025-03-10 18:33:44.935912: I tensorflow/core/common_runtime/gpu/gpu_device.cc:2021] Created device /job:localhost/replica:0/task:0/device:GPU:5 with 78670 MB memory:  -> device: 5, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:90:00.0, compute capability: 8.0
+2025-03-10 18:33:44.937279: I tensorflow/core/common_runtime/gpu/gpu_device.cc:2021] Created device /job:localhost/replica:0/task:0/device:GPU:6 with 78670 MB memory:  -> device: 6, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:b7:00.0, compute capability: 8.0
+2025-03-10 18:33:44.938639: I tensorflow/core/common_runtime/gpu/gpu_device.cc:2021] Created device /job:localhost/replica:0/task:0/device:GPU:7 with 78670 MB memory:  -> device: 7, name: NVIDIA A100-SXM4-80GB, pci bus id: 0000:bd:00.0, compute capability: 8.0
+Number of devices: 8
+batch size: 512
+/home/buddhi/anaconda3/envs/tf-gpu/lib/python3.12/site-packages/keras/src/layers/reshaping/flatten.py:37: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(**kwargs)
+Epoch 1/2
+117/118 ━━━━━━━━━━━━━━━━━━━━ 0s 29ms/step - accuracy: 0.7021 - loss: 1.11032025-03-10 18:34:26.845916: I tensorflow/core/framework/local_rendezvous.cc:404] Local rendezvous is aborting with status: OUT_OF_RANGE: End of sequence
+         [[{{node MultiDeviceIteratorGetNextFromShard}}]]
+2025-03-10 18:34:26.846070: I tensorflow/core/framework/local_rendezvous.cc:404] Local rendezvous is aborting with status: OUT_OF_RANGE: End of sequence
+         [[{{node MultiDeviceIteratorGetNextFromShard}}]]
+2025-03-10 18:34:26.846255: I tensorflow/core/framework/local_rendezvous.cc:404] Local rendezvous is aborting with status: OUT_OF_RANGE: End of sequence
+         [[{{node MultiDeviceIteratorGetNextFromShard}}]]
+         [[RemoteCall]]
+2025-03-10 18:34:26.846373: I tensorflow/core/framework/local_rendezvous.cc:404] Local rendezvous is aborting with status: OUT_OF_RANGE: End of sequence
+         [[{{node MultiDeviceIteratorGetNextFromShard}}]]
+2025-03-10 18:34:26.846868: I tensorflow/core/framework/local_rendezvous.cc:404] Local rendezvous is aborting with status: OUT_OF_RANGE: End of sequence
+         [[{{node MultiDeviceIteratorGetNextFromShard}}]]
+         [[RemoteCall]]
+
+Epoch 1: saving model to training_1/cp.weights.h5
+118/118 ━━━━━━━━━━━━━━━━━━━━ 32s 101ms/step - accuracy: 0.7050 - loss: 1.0993
+Epoch 2/2
+117/118 ━━━━━━━━━━━━━━━━━━━━ 0s 29ms/step - accuracy: 0.9713 - loss: 0.09822025-03-10 18:34:39.798580: I tensorflow/core/framework/local_rendezvous.cc:404] Local rendezvous is aborting with status: OUT_OF_RANGE: End of sequence
+         [[{{node MultiDeviceIteratorGetNextFromShard}}]]
+         [[RemoteCall]]
+
+Epoch 2: saving model to training_1/cp.weights.h5
+118/118 ━━━━━━━━━━━━━━━━━━━━ 14s 107ms/step - accuracy: 0.9713 - loss: 0.0982
+313/313 - 3s - 8ms/step - accuracy: 0.9688 - loss: 0.1002
