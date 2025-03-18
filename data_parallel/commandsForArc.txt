@@ -1,0 +1,18 @@
+srun -p gpu2v100 -N 1 -n 64 -t 0:30:0 --pty bash 
+ml  anaconda3
+conda create --name tf-gpu tensorflow-gpu
+conda activate tf-gpu
+
+
+srun -p compute1 -N 2 -n 128 -t 0:30:0 --pty bash 
+ml  anaconda3
+conda create --name tf-gpu tensorflow-gpu
+conda activate tf-gpu
+
+How to get the list of available nodes: echo $SLURM_NODELIST 
+ssh <other node id>
+
+Acces to node(s) and run the following
+ml  anaconda3
+conda create --name tf-gpu tensorflow-gpu
+conda activate tf-gpu
