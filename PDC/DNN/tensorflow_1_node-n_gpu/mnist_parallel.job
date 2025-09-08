@@ -1,0 +1,16 @@
+#!/bin/bash
+##
+#SBATCH --job-name=dgx-batch
+#SBATCH --output=out.ext
+#SBATCH --partition=dgxa100
+#SBATCH --gres=gres:gpu:1
+#SBATCH --time=00:10:00
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=
+#SBATCH --ntasks=1
+#SBATCH --nodes=1
+
+# Load one of these
+module load anaconda3
+conda activate adv
+python mnist_parallel.py
