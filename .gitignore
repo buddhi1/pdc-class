@@ -1,0 +1,12 @@
+PDC/OpenMP/src1/[^.]*
+!PDC/OpenMP/src1/Makefile
+PDC/OpenMP/src2/[^.]*
+!PDC/OpenMP/src2/Makefile
+PDC/cuda/src/[^.]*
+!PDC/cuda/src/Makefile
+PDC/cuda_gdb//[^.]*
+!PDC/cuda_gdb/Makefile
+PDC/MPI/src/[^.]*
+!PDC/MPI/src/Makefile
+PDC/pthreads/src/[^.]*
+!PDC/pthreads/src/Makefile
