@@ -10,7 +10,7 @@ int main()
 	{
 		#pragma omp master
 		{
-			printf("I am the master! (printed by %d)\n", omp_get_thread_num());
+			printf("I am the master! (printed by pid %d)\n", omp_get_thread_num());
 		}
 		
 		printf("Hello world\n");

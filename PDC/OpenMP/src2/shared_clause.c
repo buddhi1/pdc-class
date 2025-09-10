@@ -17,7 +17,7 @@ int main()
 		#pragma omp critical
 		{
 			i++;
-			printf("Within a thread, i is %d\n", i);
+			printf("Within pid=%d: i is %d\n", omp_get_thread_num(), i);
 		}
 	}
 

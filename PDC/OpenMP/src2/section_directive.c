@@ -16,11 +16,11 @@ int main()
 		{
             #pragma omp section
 			for(i = 0; i < ITERS; i++)
-				printf("i is %d\n", i);
+				printf("i is %d (pid=%d)\n", i, omp_get_thread_num());
 			
             #pragma omp section
 			for(j = 0; j < ITERS; j++)
-				printf("j is %d\n", j);
+				printf("j is %d (pid=%d)\n", j, omp_get_thread_num());
 		}
 	}
 	  

@@ -13,15 +13,15 @@ int main()
 	 * the values of the original instances.
 	 *
 	 */
-	printf("Before parallel execution, i is %d\n", i);
-    #pragma omp parallel firstprivate(i)
+	printf("Before parallel execution, i is %d (pid = %d)\n", i, omp_get_thread_num());
+	#pragma omp parallel firstprivate(i)
 	{
-		printf("Within a thread, i's init value is %d\n", i);
+		printf("Within a pid=%d: initial value is %d\n", omp_get_thread_num(), i);
 		i++;
-		printf("Within a thread, i's new value is %d\n", i);
+		printf("Within a pid=%d: new value is %d\n", omp_get_thread_num(), i);
 	}
 
-	printf("After parallel execution, i is %d\n", i);
+	printf("After parallel execution, i is %d (pid = %d)\n", i, omp_get_thread_num());
 	
 	return 0;
 }

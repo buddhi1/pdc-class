@@ -10,7 +10,7 @@ int main()
 	{
 		#pragma omp single
 		{
-			printf("This only prints once (printed by %d)\n", omp_get_thread_num());
+			printf("This only prints once (printed by pid %d)\n", omp_get_thread_num());
 		}
 		printf("Hello world\n");
 		printf("Goodbye world\n");

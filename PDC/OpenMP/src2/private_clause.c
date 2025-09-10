@@ -17,10 +17,10 @@ int main()
 	printf("Before parallel execution, i is %d\n", i);
     #pragma omp parallel private(i)
 	{
-		printf("Within a thread, i is %d\n", i);
+		printf("Within a thread, i is %d (pid=%d)\n", i, omp_get_thread_num());
 	}
 
-	printf("After parallel execution, i is %d\n", i);
+	printf("After parallel execution, i is %d (pid=%d)\n", i, omp_get_thread_num());
 	
 	return 0;
 }

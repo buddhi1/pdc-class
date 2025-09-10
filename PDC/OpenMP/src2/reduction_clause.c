@@ -13,7 +13,7 @@ int main()
      */
     #pragma omp parallel for reduction(+: result)
 	for(i = 0; i < 4; i++){
-		result += a[i]*b[i];
+		result += a[i]*b[i];  // 0+5+12+21=38
 	}
 	printf("Final result is %d\n", result);
 	  

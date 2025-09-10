@@ -9,12 +9,14 @@ int main()
      * Lastprivate variable is private. But the original variable's value is
 	 * updated with the original value.
  	*/
+	printf("Before parallel execution, i=%d and j=%d (pid = %d)\n", i, j, omp_get_thread_num());
+
     #pragma omp parallel for lastprivate(j)
 	for(i = 0; i < 16; i++){
 		j = i;
-		printf("i=%d, j=%d\n", i,j);
+		printf("pid=%d i=%d, j=%d\n", omp_get_thread_num(), i,j);
 	}
-	printf("Final val of j is %d\n", j);
+	printf("After parallel execution, i=%d and j=%d (pid = %d)\n", i, j, omp_get_thread_num());
 	  
     return 0;
 }
