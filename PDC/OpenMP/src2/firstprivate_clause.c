@@ -3,7 +3,7 @@
 
 int main() 
 {
-	int i = 3;
+	int i = 11;
 	/*
 	 * i is declared as private variable, and each thread is assigned with 
 	 * its own instance of "i". Each thread accesses its own instance of "i"

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <omp.h>
 
-#define ITERS 8
+#define ITERS 3
 
 int main() 
 {

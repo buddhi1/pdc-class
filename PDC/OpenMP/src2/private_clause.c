@@ -18,6 +18,8 @@ int main()
     #pragma omp parallel private(i)
 	{
 		printf("Within a thread, i is %d (pid=%d)\n", i, omp_get_thread_num());
+		i=omp_get_thread_num();
+		printf("Within a thread, i is %d (pid=%d)\n", i, omp_get_thread_num());
 	}
 
 	printf("After parallel execution, i is %d (pid=%d)\n", i, omp_get_thread_num());

@@ -8,11 +8,11 @@ int main()
  	*/
     #pragma omp parallel
 	{
+		printf("Hello world\n");
 		#pragma omp single
 		{
 			printf("This only prints once (printed by pid %d)\n", omp_get_thread_num());
 		}
-		printf("Hello world\n");
 		printf("Goodbye world\n");
 		
 	}

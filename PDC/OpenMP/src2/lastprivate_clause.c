@@ -11,8 +11,8 @@ int main()
  	*/
 	printf("Before parallel execution, i=%d and j=%d (pid = %d)\n", i, j, omp_get_thread_num());
 
-    #pragma omp parallel for lastprivate(j)
-	for(i = 0; i < 16; i++){
+    #pragma omp parallel for private(i) lastprivate(j)
+	for(i = 0; i < 4; i++){
 		j = i;
 		printf("pid=%d i=%d, j=%d\n", omp_get_thread_num(), i,j);
 	}

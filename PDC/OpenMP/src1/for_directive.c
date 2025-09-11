@@ -3,7 +3,7 @@
 
 int main() 
 {
-    int i, count=20;
+    int i, count=10;
     double start, end;
 
     // record start time

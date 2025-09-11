@@ -3,7 +3,7 @@
 
 int main() 
 {
-  int i, j, count1=8, count2=3;
+  int i, j, count1=4, count2=2;
   double start, end;
 
   // record start time
@@ -15,7 +15,8 @@ int main()
   printf("Nested for loop: outer loop size=%d, inner loop size=%d\n", count1, count2);
   printf("------------------------------------------------------------\n");
 
-  #pragma omp parallel for private (j) 
+  #pragma omp parallel for //private (j) 
+  // #pragma omp parallel for
 	  for(i = 0; i < count1; i++)
       for (j = 0; j < count2; ++j)
         printf("i: %d, j: %d (pid = %d)\n", i, j, omp_get_thread_num());
