@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <pthread.h>
+#define TC 4
 
 pthread_barrier_t barrier;
 
@@ -15,24 +16,24 @@ void *thread_func(void *p)
 
 int main()
 {
-	int ids[4]; 
-	pthread_t threads[4];
+	int ids[TC]; 
+	pthread_t threads[TC];
 	int i;
 
 	/*
 	 * initialize the barrier
 	 */
-	pthread_barrier_init(&barrier, NULL, 4);
+	pthread_barrier_init(&barrier, NULL, TC);
 	
 	/*
 	 * create four threads and pass corresponding idx as parameter
 	 */
-	for(i = 0; i < 4; i++){
+	for(i = 0; i < TC; i++){
 		ids[i] = i;
 		pthread_create(&threads[i], NULL, thread_func, &ids[i]);
 	}
 
-	for(i = 0; i < 4; i++){
+	for(i = 0; i < TC; i++){
 		pthread_join(threads[i], NULL);
 	}
 

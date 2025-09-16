@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <pthread.h>
+#define TC 4
 
 pthread_cond_t cond;
 pthread_mutex_t mutex;
@@ -44,10 +45,10 @@ void *producer(void *p)
 
 int main()
 {
-	int consumer_ids[4];
-	int producer_ids[4];
-	pthread_t consumers[4];
-	pthread_t producers[4];
+	int consumer_ids[TC];
+	int producer_ids[TC];
+	pthread_t consumers[TC];
+	pthread_t producers[TC];
 	int i;
 
 	/*
@@ -60,20 +61,20 @@ int main()
 	/*
 	 * create four threads and pass corresponding idx as parameter
 	 */
-	for(i = 0; i < 4; i++){
+	for(i = 0; i < TC; i++){
 		consumer_ids[i] = i;
 		pthread_create(&consumers[i], NULL, consumer, &consumer_ids[i]);
 	}
-	for(i = 0; i < 4; i++){
+	for(i = 0; i < TC; i++){
 		producer_ids[i] = i;
 		pthread_create(&producers[i], NULL, producer, &producer_ids[i]);
 	}
 
 
-	for(i = 0; i < 4; i++){
+	for(i = 0; i < TC; i++){
 		pthread_join(consumers[i], NULL);
 	}
-	for(i = 0; i < 4; i++){
+	for(i = 0; i < TC; i++){
 		pthread_join(producers[i], NULL);
 	}
 

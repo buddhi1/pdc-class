@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <pthread.h>
+#define TC 4
 
 struct thread_data{
 	int id;
@@ -12,9 +13,12 @@ void *thread_func(void *p)
 	struct thread_data *data = (struct thread_data*)p;
 
 	pthread_mutex_lock(data->mutex_pointer);
-	printf("Thread %d increasing \"shared\" to %d\n", data->id,
-	       ++*(data->shared_pointer));
+	int oldValue = *(data->shared_pointer);
+	(*data->shared_pointer)++;
+	int newValue = *(data->shared_pointer);
 
+	printf("Tid=%d => old_value=%d new_value=%d\n",
+		data->id, oldValue, newValue);
 	pthread_mutex_unlock(data->mutex_pointer);
 	
 	return NULL;
@@ -22,10 +26,10 @@ void *thread_func(void *p)
 
 int main()
 {
-	struct thread_data params[4]; 
-	pthread_t threads[4];
+	struct thread_data params[TC]; 
+	pthread_t threads[TC];
 	int i;
-	int shared = 11;
+	int shared = 10;
 	pthread_mutex_t mutex;
 
 	/*
@@ -36,14 +40,14 @@ int main()
 	/*
 	 * create four threads and pass corresponding idx as parameter
 	 */
-	for(i = 0; i < 4; i++){
+	for(i = 0; i < TC; i++){
 		params[i].id = i;
 		params[i].shared_pointer = &shared;
 		params[i].mutex_pointer = &mutex;
 		pthread_create(&threads[i], NULL, thread_func, &params[i]);
 	}
 
-	for(i = 0; i < 4; i++){
+	for(i = 0; i < TC; i++){
 		pthread_join(threads[i], NULL);
 	}
 

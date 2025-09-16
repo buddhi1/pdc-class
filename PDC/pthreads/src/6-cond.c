@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <pthread.h>
+#define TC 4
 
 pthread_cond_t cond;
 pthread_mutex_t mutex;
@@ -35,8 +36,8 @@ void *thread_func(void *p)
 
 int main()
 {
-	int ids[4]; 
-	pthread_t threads[4];
+	int ids[TC]; 
+	pthread_t threads[TC];
 	int i;
 
 	/*
@@ -44,13 +45,13 @@ int main()
 	 */
 	pthread_mutex_init(&mutex, NULL);
 	pthread_cond_init(&cond, NULL);
-	pthread_barrier_init(&barrier, NULL, 5);
+	pthread_barrier_init(&barrier, NULL, TC+1);
 	waiters = 0;
 	
 	/*
 	 * create four threads and pass corresponding idx as parameter
 	 */
-	for(i = 0; i < 4; i++){
+	for(i = 0; i < TC; i++){
 		ids[i] = i;
 		pthread_create(&threads[i], NULL, thread_func, &ids[i]);
 	}
@@ -63,7 +64,7 @@ int main()
 	while(1){
 		pthread_mutex_lock(&mutex);
 		if(waiters > 0){
-			printf("Press any key to wake a thread.\n");
+			printf("Press enter to wake a thread.\n");
 			getchar();
 			waiters--;
 			pthread_cond_signal(&cond);
@@ -99,7 +100,7 @@ int main()
 	
 	
 
-	for(i = 0; i < 4; i++){
+	for(i = 0; i < TC; i++){
 		pthread_join(threads[i], NULL);
 	}
 
