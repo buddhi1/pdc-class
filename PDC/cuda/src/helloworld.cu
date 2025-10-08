@@ -8,7 +8,7 @@ __global__ void kernel(void){
 
 int main( void ) {
 	kernel<<<1,10>>>();
-	cudaDeviceReset();
+	cudaDeviceSynchronize();
 	printf("From CPU Hello, world!\n");
 
 	return 0;

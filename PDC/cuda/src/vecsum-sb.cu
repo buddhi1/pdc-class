@@ -2,7 +2,7 @@
 // Kernel specification: block size=1, N threads per block 
 #include <stdio.h>
 
-#define N	10
+#define N 10
 
 __global__ void add( int *a, int *b, int *c ) {
 	int tid = threadIdx.x;	// handle the data at this index
@@ -28,7 +28,7 @@ int main( void ) {
 	cudaMemcpy(dev_a, a, N * sizeof(int), cudaMemcpyHostToDevice);
 	cudaMemcpy(dev_b, b, N * sizeof(int), cudaMemcpyHostToDevice);
 
-		add<<<1,N>>>( dev_a, dev_b, dev_c );
+	add<<<1,N>>>( dev_a, dev_b, dev_c );
 
 	cudaMemcpy(c, dev_c, N * sizeof(int), cudaMemcpyDeviceToHost);
 

@@ -1,56 +1,61 @@
 // Functionality: Add two given vectors
-// Kernel specification: block size=NxNx1, N threads per block 
 #include <stdio.h>
+#include <cuda_runtime.h>
 
-#define N	3
+#define N 27   // total vector size
+#define THREADS_PER_BLOCK 3  // number of threads per block
 
-__global__ void add( int *a, int *b, int *c ) {
-	int bidx = blockIdx.x;
-	int bidy = blockIdx.y;
-	int tid = threadIdx.x;	// handle the data at this index
-	if(tid < N && bidx < N && bidy < N) {
-		c[bidx*N*N + bidy*N + tid] = a[bidx*N*N + bidy*N + tid] + b[bidx*N*N + bidy*N + tid];
-	}
-	printf("blockIDx: %d, blockIDy: %d, threadIDx: %d\n", bidx, bidy, tid);
+__global__ void add(int *a, int *b, int *c) {
+    int blocksPerRow = gridDim.x;
+    int blockId = blockIdx.y * blocksPerRow + blockIdx.x;
+    int idx = blockId * blockDim.x + threadIdx.x;
+
+    if (idx < N) {
+        c[idx] = a[idx] + b[idx];
+        printf("block(%d,%d) thread(%d) -> idx=%d\n", blockIdx.x, blockIdx.y, threadIdx.x, idx);
+    }
 }
 
-int main( void ) {
-	int a[N*N*N], b[N*N*N], c[N*N*N];
-	int *dev_a, *dev_b, *dev_c;
+int main(void) {
+    int a[N], b[N], c[N];
+    int *dev_a, *dev_b, *dev_c;
 
-	// allocate the memory on the cpu
-	cudaMalloc((void**)&dev_a, N * sizeof(int) * N * N);
-	cudaMalloc((void**)&dev_b, N * sizeof(int) * N * N);
-	cudaMalloc((void**)&dev_c, N * sizeof(int) * N * N);
+    // initialize host arrays
+    for (int i = 0; i < N; i++) {
+        a[i] = i;
+        b[i] = i * i;
+    }
 
-	for (int k = 0; k < N; ++k)
-	{
-		for (int j = 0; j < N; ++j)
-		{
-			for( int i = 0; i < N; i++ ) {
-				a[k*N*N + j*N + i] = -i;
-				b[k*N*N + j*N + i] = i * i;
-			}
-		}
-	}
+    // allocate device memory
+    cudaMalloc((void**)&dev_a, N * sizeof(int));
+    cudaMalloc((void**)&dev_b, N * sizeof(int));
+    cudaMalloc((void**)&dev_c, N * sizeof(int));
 
-	cudaMemcpy(dev_a, a, N * sizeof(int) * N * N, cudaMemcpyHostToDevice);
-	cudaMemcpy(dev_b, b, N * sizeof(int) * N * N, cudaMemcpyHostToDevice);
+    cudaMemcpy(dev_a, a, N * sizeof(int), cudaMemcpyHostToDevice);
+    cudaMemcpy(dev_b, b, N * sizeof(int), cudaMemcpyHostToDevice);
 
-	dim3 blockDIM(N, N, 1);
+    // compute grid dimensions
+    // int blocksTotal = N / THREADS_PER_BLOCK;
+    int blocksTotal = (N + THREADS_PER_BLOCK - 1) / THREADS_PER_BLOCK; //celing of N/THREADS_PER_BLOCK
+    int side = (int)sqrt((double)blocksTotal);
 
-	add<<<blockDIM,N>>>( dev_a, dev_b, dev_c );
+    dim3 threadsPerBlock(THREADS_PER_BLOCK);
+    dim3 numBlocks(side, side);  // 2D grid
 
-	cudaMemcpy(c, dev_c, N * sizeof(int) * N * N, cudaMemcpyDeviceToHost);
+    add<<<numBlocks, threadsPerBlock>>>(dev_a, dev_b, dev_c);
+    cudaDeviceSynchronize();
 
+    cudaMemcpy(c, dev_c, N * sizeof(int), cudaMemcpyDeviceToHost);
 
-	for( int i = 0; i < N*N*N; i++ ){
-		printf( "%d + %d = %d\n", a[i], b[i], c[i] );
-	}
+    // print results
+	printf("\nResults:\n");
+    // print results
+    for (int i = 0; i < N; i++) {
+        printf("%d + %d = %d\n", a[i], b[i], c[i]);
+    }
 
-	cudaFree( dev_a );
-	cudaFree( dev_b );
-	cudaFree( dev_c );
-
-	return 0;
+    cudaFree(dev_a);
+    cudaFree(dev_b);
+    cudaFree(dev_c);
+    return 0;
 }

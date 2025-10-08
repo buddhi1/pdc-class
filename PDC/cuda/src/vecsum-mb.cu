@@ -2,13 +2,13 @@
 // Kernel specification: block size=N, 1 threads per block 
 #include <stdio.h>
 
-#define N	10
+#define N 10
 
 __global__ void add( int *a, int *b, int *c ) {
-	int tid = blockIdx.x;	// handle the data at this index
-	if(tid < N)
-		c[tid] = a[tid] + b[tid];
-	printf("tid: %d\n", tid);
+	int bid = blockIdx.x;	// handle the data at this index
+	if(bid < N)
+		c[bid] = a[bid] + b[bid];
+	printf("bid: %d\n", bid);
 }
 
 int main( void ) {

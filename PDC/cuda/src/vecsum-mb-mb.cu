@@ -1,49 +1,60 @@
 // Functionality: Add two given vectors
-// Kernel specification: block size=N, N threads per block 
 #include <stdio.h>
+#include <cuda_runtime.h>
 
-#define N	10
+#define N  16   // total number of elements in the vector
+#define THREADS_PER_BLOCK 4  // number of threads per block. use multiples 0f 32 for better performance
 
-__global__ void add( int *a, int *b, int *c ) {
+__global__ void add(int *a, int *b, int *c, int n) {
 	int bid = blockIdx.x;
-	int tid = threadIdx.x;	// handle the data at this index
-	if(tid < N)
-		c[bid][tid] = a[bid][tid] + b[bid][tid];
-	printf("threadIDx: %d\n", tid);
+    int tid = threadIdx.x;
+    int idx = bid * blockDim.x + tid;   // flat index across the grid
+
+    if (idx < n) {
+        c[idx] = a[idx] + b[idx];
+        printf("block=%d thread=%d -> idx=%d: %d + %d = %d\n", bid, tid, idx, a[idx], b[idx], c[idx]);
+    }
 }
 
-int main( void ) {
-	int a[N][N], b[N][N], c[N][N];
-	int *dev_a, *dev_b, *dev_c;
+int main(void) {
+    int a[N], b[N], c[N];
+    int *dev_a, *dev_b, *dev_c;
 
-	// allocate the memory on the cpu
-	cudaMalloc( (void**)&dev_a, N * sizeof(int));
-	cudaMalloc( (void**)&dev_b, N * sizeof(int));
-	cudaMalloc( (void**)&dev_c, N * sizeof(int));
+    // allocate device memory
+    cudaMalloc((void**)&dev_a, N * sizeof(int));
+    cudaMalloc((void**)&dev_b, N * sizeof(int));
+    cudaMalloc((void**)&dev_c, N * sizeof(int));
 
-	for (int j = 0; j < N; ++j)
-	{
-		for( int i = 0; i < N; i++ ) {
-			a[j][i] = -i;
-			b[j][i] = i * i;
-		}
-	}
+    // initialize host arrays
+    for (int i = 0; i < N; i++) {
+        a[i] = i;
+        b[i] = i * i;
+    }
 
-	cudaMemcpy( dev_a, a, N * sizeof(int), cudaMemcpyHostToDevice);
-	cudaMemcpy( dev_b, b, N * sizeof(int), cudaMemcpyHostToDevice);
+    // copy host arrays to device
+    cudaMemcpy(dev_a, a, N * sizeof(int), cudaMemcpyHostToDevice);
+    cudaMemcpy(dev_b, b, N * sizeof(int), cudaMemcpyHostToDevice);
 
-		add<<<N,N>>>( dev_a, dev_b, dev_c );
+    // choose block and grid size
+    int blocks = (N + THREADS_PER_BLOCK - 1) / THREADS_PER_BLOCK; //celing of N/THREADS_PER_BLOCK
 
-	cudaMemcpy( c, dev_c, N * sizeof(int), cudaMemcpyDeviceToHost);
+    // launch kernel
+    add<<<blocks, THREADS_PER_BLOCK>>>(dev_a, dev_b, dev_c, N);
 
+    // copy results back
+    cudaMemcpy(c, dev_c, N * sizeof(int), cudaMemcpyDeviceToHost);
 
-	for( int i = 0; i < N; i++ ){
-		printf( "%d + %d = %d\n", a[i], b[i], c[i] );
-	}
+	printf("\nResults:\n");
+    // print results
+    for (int i = 0; i < N; i++) {
+        printf("%d + %d = %d\n", a[i], b[i], c[i]);
+    }
 
-	cudaFree( dev_a );
-	cudaFree( dev_b );
-	cudaFree( dev_c );
+    // cleanup
+    cudaFree(dev_a);
+    cudaFree(dev_b);
+    cudaFree(dev_c);
 
-	return 0;
+    return 0;
 }
+
