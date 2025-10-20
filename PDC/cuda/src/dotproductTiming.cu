@@ -5,7 +5,7 @@
 
 #define imin(a,b) (a<b?a:b)
 
-const int N = 33*1024*20;
+const int N = 32*1024*20;
 const int threadsPerBlock = 256;
 const int blocksPerGrid = imin(32, (N+threadsPerBlock-1) / threadsPerBlock);
 
@@ -94,7 +94,7 @@ int main (void) {
 		a[i] = i;
 		b[i] = i*2;
 	}
-	
+	printf("Block size: %d, Grid size: %d\n", threadsPerBlock, blocksPerGrid);
 	
 	// copy the arrays 'a' and 'b' to the gpu
 	cudaMemcpy(dev_a, a, N*sizeof(float), cudaMemcpyHostToDevice);
@@ -115,6 +115,7 @@ int main (void) {
 	cudaEventCreate(&stop1);
 	cudaEventRecord(start1);
 	dot_global<<<blocksPerGrid, threadsPerBlock>>>(dev_a, dev_b, dev_partial_c2);
+
 	reduce_global<<<blocksPerGrid, threadsPerBlock>>>(dev_partial_c2, dev_partial_c2);
 	cudaEventRecord(stop1);
 
