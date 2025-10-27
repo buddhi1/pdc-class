@@ -17,7 +17,7 @@ int main(int argc, char* argv) {
     // scanf("%d", &num);
 
     long fact = factorial(num);
-    printf("Factorial of %d is: %ld\n", num, fact);
+    printf("Factorial of %d is: %ld\n", num, fact); // 5!=120 //4!=24
 
     return 0;
 }

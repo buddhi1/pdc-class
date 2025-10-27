@@ -25,18 +25,22 @@ MPI_Datatype create_mpi_item_type()
 	MPI_Aint offsets[3] = {0}; //array with beginning offset of each block;
 	MPI_Datatype types[3] = {MPI_INT, MPI_DOUBLE, MPI_FLOAT}; // old types of each block are
                                                                   // int, double, float
-	MPI_Aint int_size, double_size;
+	// /*
+	//  * get the offsets for each block
+	//  */
+	struct item tmp;
 
-	/*
-	 * get the offsets for each block
-	 */
-	offsets[0] = 0; // block 1 starts from the beginning
-	MPI_Type_extent(MPI_INT, &int_size); // get the size of MPI_INT
-	offsets[1] = int_size * 2; // block 2 starts after two ints
-	MPI_Type_extent(MPI_DOUBLE, &double_size); // get the size MPI_DOUBLE
-	offsets[2] = int_size * 2 + double_size; // block 3 starts after two MPI_INTs and one 
-	                                         // MPI_DOUBLE
-	
+    MPI_Aint base;
+    MPI_Get_address(&tmp, &base);
+    MPI_Get_address(&tmp.id, &offsets[0]);
+    MPI_Get_address(&tmp.weight, &offsets[1]);
+    MPI_Get_address(&tmp.value, &offsets[2]);
+
+    offsets[0] -= base;
+    offsets[1] -= base;
+    offsets[2] -= base;
+
+	// printf("Offsets: %ld %ld %ld\n", (long)offsets[0], (long)offsets[1], (long)offsets[2]);
 
 	ret = MPI_Type_struct(count, block_length, offsets, types, &new_type);
 	if(ret != MPI_SUCCESS)
@@ -59,13 +63,14 @@ void item_sum(void *vin, void *vinout, int *len, MPI_Datatype *dptr)
 
 
 	for(i = 0; i < *len; i++){
+ 	// printf("[item_sum] Adding rank data: weight=%.2f, value=%.2f -> new weight=%.2f, new value=%.2f\n", in[i].weight, in[i].value, inout[i].weight, inout[i].value);
 	  /* sum weight and value */
 	  tmp.weight = in->weight + inout->weight;
 	  tmp.value = in->value + inout->value;
 	  
 	  /* set the sum to be the out value */
 	  *inout = tmp;
-	
+
 	  /* process next element */
 	  in++;
 	  inout++;
@@ -102,11 +107,12 @@ int main (int argc, char *argv[])
 	  printf("Failed to create item  sum operation\n");
 
 	/* randomly generate some items */
-	product.weight = proc_id * 10;
-	product.value = proc_id * 100;
+	product.weight = proc_id + 10;
+	product.value = proc_id + 100;
 	product.id = proc_id;
 
-
+	printf("Before reduction, process %d: total weight is %lf, total value is %f\n", 
+	       proc_id, product.weight, product.value);
 	/* 
 	 * sum all data
 	 */
