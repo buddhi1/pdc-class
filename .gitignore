@@ -8,8 +8,8 @@ PDC/MPI/src/*
 !PDC/pthreads/src/*.c
 !PDC/OpenMP/src1/*.c
 !PDC/OpenMP/src2/*.c
-!PDC/cuda/src/*.c
-!PDC/cuda/src2/*.c
+!PDC/cuda/src/*.cu
+!PDC/cuda/src2/*.cu
 !PDC/MPI/src/*.c
 
 !PDC/pthreads/src/Makefile
