@@ -6,6 +6,20 @@
  * Process matching with MPI_send/recv. An even process p is matched with 
  * process (p+1), i.e., 0 matches 1, 2 matches 3, 4 matches 5 ...
  */
+
+/*
+Basic data types:
+	MPI_INT: Integer
+	MPI_FLOAT: Floating-point number
+	MPI_DOUBLE: Double precision floating-point number
+	MPI_CHAR: Character
+
+Derived data types:
+	MPI_BYTE: A byte (8 bits)
+	MPI_SHORT: Short integer
+	MPI_LONG: Long integer
+*/
+
 int main (int argc, char *argv[])
 {
 	int  proc_cnt, proc_id;

@@ -19,8 +19,7 @@ int main(int argc, char *argv[])  {
     return 0;
   }
 
-  // set data for each processe
-  send_buf = proc_id*10;
+  send_buf = proc_id;
 
   // extract the original group handle
   MPI_Comm_group(MPI_COMM_WORLD, &orig_group);

@@ -23,6 +23,7 @@ int main (int argc, char *argv[])
 
 	/* each process generate data for gethering */
 	data = proc_id + 1;
+	printf("After local processing, process %d: the sum is %d\n ", proc_id, sum);
 
 	/* 
 	 * sum all data
@@ -30,7 +31,7 @@ int main (int argc, char *argv[])
 	MPI_Reduce(&data, &sum, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
 
 	/* log the sum */
-	printf("After reduction, process %d: the sum is %d\n ", proc_id, sum);
+	printf("  After reduction, process %d: the sum is %d\n ", proc_id, sum);
 
 
 	/* cleanup */
