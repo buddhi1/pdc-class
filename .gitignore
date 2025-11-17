@@ -2,17 +2,20 @@ PDC/pthreads/src/*
 PDC/OpenMP/src1/*
 PDC/OpenMP/src2/*
 PDC/cuda/src/*
+PDC/cuda/src2/*
 PDC/MPI/src/*
 
 !PDC/pthreads/src/*.c
 !PDC/OpenMP/src1/*.c
 !PDC/OpenMP/src2/*.c
 !PDC/cuda/src/*.c
+!PDC/cuda/src2/*.c
 !PDC/MPI/src/*.c
 
 !PDC/pthreads/src/Makefile
 !PDC/OpenMP/src1/Makefile
 !PDC/OpenMP/src2/Makefile
 !PDC/cuda/src/Makefile
+!PDC/cuda/src2/Makefile
 !PDC/cuda_gdb/Makefile
 !PDC/MPI/src/Makefile
