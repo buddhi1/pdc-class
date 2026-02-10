@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <cuda_runtime.h>
 /*
-compile: nvcc -allow-unsupported-compiler info.cu -o info
+compile: nvcc -g -G info.cu -o info
 run: ./info
 */
 

@@ -18,7 +18,7 @@ void printArray(int arr[], int n) {
 }
 
 int main(int argc, char* argv) {
-    int arr[10]={1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int arr[10]={1, 2, 3, 4, 5, 6, 7, 8, 9, 50};
     int n=10;
 
     printf("Array: ");

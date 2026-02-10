@@ -108,6 +108,7 @@ __global__ void cgkernel()
     output = sumReduction(threadBlockGroup, workspace, input);
 
     // master thread in group prints out result
+    // 0 + 1 + 2 + ... + 63 = (63 * 64) / 2 = 2016
     if (threadBlockGroup.thread_rank() == 0) {
         printf(" Sum of all ranks 0..%d in threadBlockGroup is %d (expected %d)\n\n",
                (int)threadBlockGroup.size() - 1,
@@ -137,6 +138,7 @@ __global__ void cgkernel()
     output = sumReduction(tiledPartition16, workspace + workspaceOffset, input);
 
     // each master thread prints out result
+    // 0 + 1 + ... + 15 = (15 * 16) / 2 = 120
     if (tiledPartition16.thread_rank() == 0)
         printf("   Sum of all ranks 0..15 in this tiledPartition16 group is %d "
                "(expected %d)\n",

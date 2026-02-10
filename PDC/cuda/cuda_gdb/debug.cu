@@ -1,8 +1,9 @@
 
 // Program do vector addition. Use this for cucda-gdb debugging demo
 /*
-    compile: nvcc -g -G -allow-unsupported-compiler debug.cu -o debug
-    run. cuda-gdb ./debug
+    compile: nvcc -g -G debug.cu -o debug
+    debug: cuda-gdb ./debug
+    run:./debug 
 */
 #include <stdio.h>
 
@@ -38,7 +39,7 @@ int main() {
 
 
     // Calculate the number of blocks needed
-    // THREADS_PER_BLOCK - 1 is usefull when ARRAY_SIZE is not a multiple of THREADS_PER_BLOCK. It will launch enough threads
+    // uses ceiling for chunk size when using (THREADS_PER_BLOCK - 1)
     dim3 dimGrid((ARRAY_SIZE + THREADS_PER_BLOCK - 1) / THREADS_PER_BLOCK, 1, 1);
     dim3 dimBlock(THREADS_PER_BLOCK, 1, 1);
     // Launch kernel

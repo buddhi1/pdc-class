@@ -3,7 +3,8 @@
 // WIDTH is the matrix width and height. For simplicity matrices are WIDTHxWIDTH
 
 /*
-    compile: nvcc -allow-unsupported-compiler -o matMul matMul.cu
+    compile: nvcc -g -G -o matMul matMul.cu
+    debug: cuda-gdb ./matMul
     run: ./matMul
 */
 
