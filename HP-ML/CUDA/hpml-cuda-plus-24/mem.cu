@@ -1,84 +1,171 @@
+/*
+This program demonstrates memory coalesced Access vs strided access
+
+
+compile: nvcc  mem.cu -o  mem
+Run: ./mem
+Profile: ncu --metrics l1tex__average_t_sectors_per_request_pipe_lsu_mem_global_op_ld ./mem
+*/
+
+/*
+Profiling result
+
+==PROF== Connected to process 376615 (/home/buddhi/pdc-class/HP-ML/CUDA/hpml-cuda-plus-24/mem)
+Benchmarking Strided Memory Access...
+Threads: 4194304, Stride: 32 (Accessing data 128 bytes apart)
+----------------------------------------------------------------
+==PROF== Profiling "coalescedKernel" - 0: 0%....50%....100% - 3 passes
+==PROF== Profiling "coalescedKernel" - 1: 0%....50%....100% - 3 passes
+Coalesced (Stride 1)      Time:  206.786 ms  |  Effective BW:     0.16 GB/s
+==PROF== Profiling "stridedKernel" - 2: 0%....50%....100% - 3 passes
+Strided (Stride 32)       Time:  205.026 ms  |  Effective BW:     0.16 GB/s
+==PROF== Disconnected from process 376615
+[376615] mem@127.0.0.1
+  coalescedKernel(int *, int *, int) (16384, 1, 1)x(256, 1, 1), Context 1, Stream 7, Device 0, CC 7.5
+    Section: Command line profiler metrics
+    ----------------------------------------------------------------------- ----------- ------------
+    Metric Name                                                             Metric Unit Metric Value
+    ----------------------------------------------------------------------- ----------- ------------
+    l1tex__average_t_sectors_per_request_pipe_lsu_mem_global_op_ld.max_rate      sector           32
+    l1tex__average_t_sectors_per_request_pipe_lsu_mem_global_op_ld.pct                %        12.50
+    l1tex__average_t_sectors_per_request_pipe_lsu_mem_global_op_ld.ratio         sector            4
+    ----------------------------------------------------------------------- ----------- ------------
+
+  coalescedKernel(int *, int *, int) (16384, 1, 1)x(256, 1, 1), Context 1, Stream 7, Device 0, CC 7.5
+    Section: Command line profiler metrics
+    ----------------------------------------------------------------------- ----------- ------------
+    Metric Name                                                             Metric Unit Metric Value
+    ----------------------------------------------------------------------- ----------- ------------
+    l1tex__average_t_sectors_per_request_pipe_lsu_mem_global_op_ld.max_rate      sector           32
+    l1tex__average_t_sectors_per_request_pipe_lsu_mem_global_op_ld.pct                %        12.50
+    l1tex__average_t_sectors_per_request_pipe_lsu_mem_global_op_ld.ratio         sector            4
+    ----------------------------------------------------------------------- ----------- ------------
+
+  stridedKernel(int *, int *, int) (16384, 1, 1)x(256, 1, 1), Context 1, Stream 7, Device 0, CC 7.5
+    Section: Command line profiler metrics
+    ----------------------------------------------------------------------- ----------- ------------
+    Metric Name                                                             Metric Unit Metric Value
+    ----------------------------------------------------------------------- ----------- ------------
+    l1tex__average_t_sectors_per_request_pipe_lsu_mem_global_op_ld.max_rate      sector           32
+    l1tex__average_t_sectors_per_request_pipe_lsu_mem_global_op_ld.pct                %          100
+    l1tex__average_t_sectors_per_request_pipe_lsu_mem_global_op_ld.ratio         sector           32
+    ----------------------------------------------------------------------- ----------- ------------
+
+    For the following config
+    #define N_THREADS (1 << 22)
+    #define BLOCK_SIZE 256
+    #define STRIDE 32     
+    
+    Our warp size=32
+    int size=4B
+    data used per warp = 32x4B=128B
+
+    l1tex__average_t_sectors_per_request_pipe_lsu_mem_global_op_ld.ratio         sector : 
+        in coalescedKernel() - 4 (Warp requested 32Bx4=128B means 1 transaction per )
+        in stridedKernel() - 32 (Warp requested)
+*/
+
+
 #include <stdio.h>
 #include <cuda_runtime.h>
 
-#define N 128  // Total elements (must be a multiple of warp size)
-#define BLOCK_SIZE 64
-#define SHIFT 18 
+// Number of elements to process (Threads)
+#define N_THREADS (1 << 22) // ~4 Million threads
+#define BLOCK_SIZE 256
+#define STRIDE 32           // Stride of 32 integers (128 bytes)
 
-__global__ void kernel(void){
-	printf("From GPU [block id: %d, thread id: %d] Hello, world!\n", blockIdx.x, threadIdx.x);
-}
-
-__global__ void alignedAccess(int *arr1, int *out) {
-    int warpId = threadIdx.x / warpSize;  // Warp index within the block
-    int idx = threadIdx.x + blockIdx.x * blockDim.x;
-    if (idx < N) {
-        out[idx] = arr1[idx];  // Aligned memory access
+// ==========================================
+// Kernel 1: Coalesced Access (Fast)
+// ==========================================
+// Reads: input[0], input[1], input[2]...
+// Memory Transactions: 1 per warp
+__global__ void coalescedKernel(int *input, int *output, int n) {
+    int idx = blockIdx.x * blockDim.x + threadIdx.x;
+    if (idx < n) {
+        output[idx] = input[idx]; 
     }
-    printf("alignedAccess() Thread %d in Block %d belongs to Warp %d access %d from %d\n", idx, blockIdx.x, warpId, idx, idx);
 }
 
-__global__ void misalignedAccess(int *arr2, int *out) {
-    int warpId = threadIdx.x / warpSize;  // Warp index within the block
-    int idx = threadIdx.x + blockIdx.x * blockDim.x;
-    if (idx < N - 1) {  
-        out[idx] = arr2[(idx)+N];  // Misaligned access
+// ==========================================
+// Kernel 2: Strided Access (Slow)
+// ==========================================
+// Reads: input[0], input[32], input[64]...
+// Memory Transactions: 32 per warp (Worst Case)
+__global__ void stridedKernel(int *input, int *output, int n) {
+    int idx = blockIdx.x * blockDim.x + threadIdx.x;
+    if (idx < n) {
+        // Each thread reads a value 128 bytes apart from its neighbor.
+        // This defeats the cache line coalescing mechanism completely.
+        output[idx] = input[idx * STRIDE]; 
     }
-    printf("misalignedAccess() Thread %d in Block %d belongs to Warp %d access %d from %d\n", idx, blockIdx.x, warpId, idx, (idx)+N);
 }
 
-void measureExecutionTime(void (*kernel)(int *, int *), int *d_arr, int *d_out, const char *kernelName) {
+void measureExecutionTime(void (*kernel)(int *, int *, int), int *d_in, int *d_out, int n, const char *kernelName) {
     cudaEvent_t start, stop;
     float time;
     cudaEventCreate(&start);
     cudaEventCreate(&stop);
 
+    int gridSize = (n + BLOCK_SIZE - 1) / BLOCK_SIZE;
+
     cudaEventRecord(start);
-    kernel<<<N / BLOCK_SIZE, BLOCK_SIZE>>>(d_arr, d_out);
+    kernel<<<gridSize, BLOCK_SIZE>>>(d_in, d_out, n);
     cudaEventRecord(stop);
 
     cudaEventSynchronize(stop);
     cudaEventElapsedTime(&time, start, stop);
-    printf("%s Execution Time: %f ms\n", kernelName, time);
+    
+    // Calculate Effective Bandwidth (GB/s)
+    // We read N ints and write N ints. Total bytes transferred is 2 * N * 4.
+    // Note: The strided kernel actually fetches MORE data from DRAM (overhead), 
+    // but "Effective Bandwidth" measures useful work done.
+    double bandwidth = (2.0 * 4.0 * n) / (time * 1e6); 
+    
+    printf("%-25s Time: %8.3f ms  |  Effective BW: %8.2f GB/s\n", kernelName, time, bandwidth);
 
     cudaEventDestroy(start);
     cudaEventDestroy(stop);
 }
 
 int main() {
-    int *h_arr1 = (int *)malloc(N * sizeof(int));
-    int *h_arr2 = (int *)malloc(N * sizeof(int));
-    int *h_out = (int *)malloc(N * sizeof(int));
+    // 1. Determine sizes
+    // The "input" array for the Strided kernel must be much larger
+    // because we skip 32 elements for every 1 element we read.
+    size_t data_size_linear = N_THREADS * sizeof(int);
+    size_t data_size_strided = N_THREADS * STRIDE * sizeof(int);
 
-    for (int i = 0; i < N; i++) {
-        h_arr1[i] = i;
-        h_arr2[i] = i * 2;  // Different data
+    // 2. Allocate Host Memory
+    int *h_in = (int *)malloc(data_size_strided); // Large enough for stride
+    int *h_out = (int *)malloc(data_size_linear);
+
+    // Initialize with dummy data
+    for (int i = 0; i < N_THREADS * STRIDE; i++) {
+        h_in[i] = 1;
     }
 
-    int *d_arr1, *d_arr2, *d_out;
-    cudaMalloc(&d_arr1, N * sizeof(int));
-    cudaMalloc(&d_arr2, N * sizeof(int));
-    cudaMalloc(&d_out, N * sizeof(int));
+    // 3. Allocate Device Memory
+    int *d_in, *d_out;
+    cudaMalloc(&d_in, data_size_strided); // Must accomodate largest access
+    cudaMalloc(&d_out, data_size_linear);
 
-    cudaMemcpy(d_arr1, h_arr1, N * sizeof(int), cudaMemcpyHostToDevice);
-    cudaMemcpy(d_arr2, h_arr2, N * sizeof(int), cudaMemcpyHostToDevice);
+    cudaMemcpy(d_in, h_in, data_size_strided, cudaMemcpyHostToDevice);
 
-	// this kernel prints some info. 
-    // It setup the cuda environment for the first time allowing us the time the below 2 kenels excluding cuda setup time
-    kernel<<<2,2>>>();
+    printf("Benchmarking Strided Memory Access...\n");
+    printf("Threads: %d, Stride: %d (Accessing data 128 bytes apart)\n", N_THREADS, STRIDE);
+    printf("----------------------------------------------------------------\n");
 
-    // Measure execution time
-    measureExecutionTime(alignedAccess, d_arr1, d_out, "Aligned Access");
-    measureExecutionTime(misalignedAccess, d_arr2, d_out, "Misaligned Access");
+    // Warmup
+    coalescedKernel<<< (N_THREADS + BLOCK_SIZE - 1) / BLOCK_SIZE, BLOCK_SIZE >>>(d_in, d_out, N_THREADS);
+    cudaDeviceSynchronize();
 
-    cudaMemcpy(h_out, d_out, N * sizeof(int), cudaMemcpyDeviceToHost);
+    // Measure
+    measureExecutionTime(coalescedKernel, d_in, d_out, N_THREADS, "Coalesced (Stride 1)");
+    measureExecutionTime(stridedKernel, d_in, d_out, N_THREADS, "Strided (Stride 32)");
 
     // Cleanup
-    cudaFree(d_arr1);
-    cudaFree(d_arr2);
+    cudaFree(d_in);
     cudaFree(d_out);
-    free(h_arr1);
-    free(h_arr2);
+    free(h_in);
     free(h_out);
 
     return 0;
