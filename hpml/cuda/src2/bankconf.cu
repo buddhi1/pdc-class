@@ -117,6 +117,7 @@ __global__ void bankConflictKernel(int *out) {
     // If we multiply tid * 32, every result is a multiple of 32.
     // Multiples of 32 always land in Bank 0.
     // We use % SHMEM_SIZE to keep it inside the array bounds.
+    // index is 0, 32, 64, etc
     int index = (tid * 32) % SHMEM_SIZE;
 
     int val = 0;

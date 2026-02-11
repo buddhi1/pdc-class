@@ -20,9 +20,10 @@ __global__ void dot_shared(float* a, float* b, float* c) {
     
     // 1. Grid-Stride Loop: Accumulate partial sum in register
     float temp = 0;
+    // each thread may have to compute more value based on the input data size
     while (tid < N){
         temp += a[tid] * b[tid];
-        tid += blockDim.x * gridDim.x;
+        tid += blockDim.x * gridDim.x;  // jump to next round data
     }
     
     // 2. Load into Shared Memory
@@ -32,6 +33,7 @@ __global__ void dot_shared(float* a, float* b, float* c) {
     __syncthreads();
     
     // 4. Parallel Reduction in Shared Memory
+    // follows tree reduction hence uses power of 2
     // Requires threadsPerBlock to be a power of 2
     int i = blockDim.x / 2;
     while (i != 0){
@@ -56,9 +58,10 @@ __global__ void dot_no_shared(float* a, float* b, float* c) {
     
     // 1. Grid-Stride Loop: Accumulate partial sum in register
     float temp = 0;
+    // each thread may have to compute more value based on the input data size
     while (tid < N){
         temp += a[tid] * b[tid];
-        tid += blockDim.x * gridDim.x;
+        tid += blockDim.x * gridDim.x;  // jump to next round data
     }
 
     // 2. Direct update to Global Memory
