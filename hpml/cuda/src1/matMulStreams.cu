@@ -1,14 +1,14 @@
 /*
 Matrix multiplication using single GPU and Multi-GPUs
-We use CUDA streams to launch parallel GPU threads
-Async memory copyin is required here to avoid serial kernel launching
+We use OpenMP to launch parallel GPU threads
+Async memory copyin is not must here since CPU threads take care of the parallelism
+This method make more sense if there has been heavy CPU heavy load during host to device data off
 */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <omp.h>           // Kept ONLY for parallel threads, no longer used for timing
 #include <cuda_runtime.h>
-#include <chrono>          // Added for high-definition C++ CPU timing
+#include <chrono> // Replaces omp.h for high-definition CPU timing
 
 #define WIDTH 1024*1   // Increased size to make Multi-GPU scaling visible
 #define BLOCK_SIZE 32
@@ -138,7 +138,6 @@ int main() {
     cudaEventCreate(&start_single); cudaEventCreate(&stop_single);
 
     cudaEventRecord(start_single);
-    // Launch with full height
     matMulGPUShared<<<dimGrid, dimBlock>>>(d_A, d_B, d_C, WIDTH, WIDTH);
     cudaEventRecord(stop_single);
 
@@ -152,20 +151,9 @@ int main() {
     cudaFree(d_A); cudaFree(d_B); cudaFree(d_C);
     cudaEventDestroy(start_single); cudaEventDestroy(stop_single);
 
-    // =========================================================================
-    // WARM UP ALL GPUs BEFORE TIMING
-    // Added this to hide CUDA initializing timing to fairly compare against the
-    // CUDA streams variant
-    // =========================================================================
-
-    for (int i = 0; i < deviceCount; i++) {
-        cudaSetDevice(i);
-        cudaFree(0); // This dummy command forces the GPU context to initialize!
-    }
-
 
     // =========================================================================
-    // PART 2: MULTI-GPU EXECUTION
+    // PART 2: MULTI-GPU EXECUTION (Native CUDA Streams)
     // =========================================================================
     printf("--- Running Multi-GPU (%d Devices) ---\n\n", deviceCount);
 
@@ -175,63 +163,65 @@ int main() {
     cudaEventCreate(&start_multi);
     cudaEventCreate(&stop_multi);
 
-    // Record start time before spawning CPU threads
+    // Arrays to hold streams and device pointers for each GPU
+    cudaStream_t* streams = (cudaStream_t*)malloc(deviceCount * sizeof(cudaStream_t));
+    float** d_A_local = (float**)malloc(deviceCount * sizeof(float*));
+    float** d_B_local = (float**)malloc(deviceCount * sizeof(float*));
+    float** d_C_local = (float**)malloc(deviceCount * sizeof(float*));
+
+    // Step 2a: Initialize a stream for each device
+    for (int devId = 0; devId < deviceCount; devId++) {
+        cudaSetDevice(devId);
+        cudaStreamCreate(&streams[devId]);
+    }
+
+    // --- START TIMING MULTI-GPU ---
+    cudaSetDevice(0);
     cudaEventRecord(start_multi);
 
-    // We use OpenMP to spawn one CPU thread per GPU
-    #pragma omp parallel num_threads(deviceCount)
-    {
-        int devId = omp_get_thread_num();
+    // Step 2b: A single CPU thread rapidly queues work to ALL devices asynchronously
+    for (int devId = 0; devId < deviceCount; devId++) {
         cudaSetDevice(devId); 
 
-        // 1. Calculate Decomposed Workload
-        // Divide rows evenly among GPUs
         int rowsPerGPU = WIDTH / deviceCount;
         int rowOffset  = devId * rowsPerGPU;
-        
-        // Handle remainder for odd matrix sizes
         if (devId == deviceCount - 1) {
             rowsPerGPU = WIDTH - rowOffset;
         }
 
-        // 2. Allocate Sliced Memory
-        // A and C are sliced (chunks). B is full (replicated).
         size_t sizeA_chunk = rowsPerGPU * WIDTH * sizeof(float);
         size_t sizeB_full  = WIDTH * WIDTH * sizeof(float);
         size_t sizeC_chunk = rowsPerGPU * WIDTH * sizeof(float);
 
-        float *d_A_local, *d_B_local, *d_C_local;
-        cudaMalloc(&d_A_local, sizeA_chunk);
-        cudaMalloc(&d_B_local, sizeB_full);
-        cudaMalloc(&d_C_local, sizeC_chunk);
+        cudaMalloc(&d_A_local[devId], sizeA_chunk);
+        cudaMalloc(&d_B_local[devId], sizeB_full);
+        cudaMalloc(&d_C_local[devId], sizeC_chunk);
 
-        // 3. Async Copy
-        // Copy only the required rows of A
-        cudaMemcpyAsync(d_A_local, h_A + (rowOffset * WIDTH), sizeA_chunk, cudaMemcpyHostToDevice);
-        // Copy all of B
-        cudaMemcpyAsync(d_B_local, h_B, sizeB_full, cudaMemcpyHostToDevice);
+        cudaMemcpyAsync(d_A_local[devId], h_A + (rowOffset * WIDTH), sizeA_chunk, cudaMemcpyHostToDevice, streams[devId]);
+        cudaMemcpyAsync(d_B_local[devId], h_B, sizeB_full, cudaMemcpyHostToDevice, streams[devId]);
 
-        // 4. Launch Kernel
-        // Grid Y is scaled down to match 'rowsPerGPU'
         dim3 dimGridMulti(WIDTH / BLOCK_SIZE, (rowsPerGPU + BLOCK_SIZE - 1) / BLOCK_SIZE);
         
-        // Pass 'rowsPerGPU' as the height so kernel knows bounds
-        matMulGPUShared<<<dimGridMulti, dimBlock>>>(d_A_local, d_B_local, d_C_local, WIDTH, rowsPerGPU);
+        matMulGPUShared<<<dimGridMulti, dimBlock, 0, streams[devId]>>>(d_A_local[devId], d_B_local[devId], d_C_local[devId], WIDTH, rowsPerGPU);
 
-        // 5. Copy Result
-        cudaMemcpyAsync(h_C_Multi + (rowOffset * WIDTH), d_C_local, sizeC_chunk, cudaMemcpyDeviceToHost);
+        cudaMemcpyAsync(h_C_Multi + (rowOffset * WIDTH), d_C_local[devId], sizeC_chunk, cudaMemcpyDeviceToHost, streams[devId]);
+    }
 
-        // Ensure this device is done before ending the OpenMP thread
-        cudaDeviceSynchronize();
+    // Step 2c: Now that all work is queued, the CPU waits for each GPU to finish and cleans up
+    for (int devId = 0; devId < deviceCount; devId++) {
+        cudaSetDevice(devId);
+        
+        // Block the CPU thread until THIS specific stream is finished
+        cudaStreamSynchronize(streams[devId]); 
 
-        // Cleanup
-        cudaFree(d_A_local);
-        cudaFree(d_B_local);
-        cudaFree(d_C_local);
-    } // End Parallel Region - An implicit barrier here waits for all CPU threads to finish
+        cudaFree(d_A_local[devId]);
+        cudaFree(d_B_local[devId]);
+        cudaFree(d_C_local[devId]);
+        cudaStreamDestroy(streams[devId]);
+    }
 
-    // All OpenMP threads have joined, meaning all GPUs are 100% finished.
-    // Record stop time on Device 0.
+    // --- STOP TIMING MULTI-GPU ---
+    // Record the stop event back on Device 0 after all devices have synchronized
     cudaSetDevice(0);
     cudaEventRecord(stop_multi);
     cudaEventSynchronize(stop_multi);
@@ -239,6 +229,8 @@ int main() {
     float multi_gpu_ms = 0;
     cudaEventElapsedTime(&multi_gpu_ms, start_multi, stop_multi);
     cudaEventDestroy(start_multi); cudaEventDestroy(stop_multi);
+
+    free(streams); free(d_A_local); free(d_B_local); free(d_C_local);
 
     printf("Serial CPU Time: %.2f ms\n", serial_time);
     printf("Single GPU Time: %.2f ms\n", single_gpu_ms);
@@ -251,8 +243,8 @@ int main() {
     int pass_multi = matCompare(h_C_Serial, h_C_Multi, WIDTH);
 
     printf("\n--- Correctness Check ---\n");
-    printf("Single GPU:     %s\n", pass_single ? "PASS" : "FAIL");
-    printf("GPU Global: %s\n", pass_multi ? "PASS" : "FAIL");
+    printf("Single GPU: %s\n", pass_single ? "PASS" : "FAIL");
+    printf("Multi-GPU:  %s\n", pass_multi ? "PASS" : "FAIL");
 
     cudaFreeHost(h_A); cudaFreeHost(h_B); cudaFreeHost(h_C_Multi);
     free(h_C_Single);  free(h_C_Serial);

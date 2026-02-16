@@ -6,7 +6,7 @@ CC = nvcc
 CFLAGS = -O3
 OMP_FLAGS = -Xcompiler -fopenmp
 
-SOURCES = add.cu dotproduct.cu dotproductTiming.cu helloworld.cu helloworld-2.cu vecsum-grid.cu vecsum-mb.cu vecsum-sb.cu vecsum-mb-mb.cu matMul.cu matMulMultiGPU.cu
+SOURCES = add.cu dotproduct.cu dotproductTiming.cu helloworld.cu helloworld-2.cu vecsum-grid.cu vecsum-mb.cu vecsum-sb.cu vecsum-mb-mb.cu matMul.cu matMulMultiGPU.cu matMulStreams.cu
 
 # Generate object names from source names
 OBJECTS = $(SOURCES:%.cu=%)
