@@ -1,0 +1,12 @@
+Master Node built the worker list: [ "gpu037:2222" ]
+Deploying tasks to cluster...
+--- Node 0 TF_CONFIG ---
+--- Node 0 TF_CONFIG ---
+{ "cluster": { "worker": [ "gpu037:2222" ] }, "task": { "type": "worker", "index": 0 } }
+--- Node 0 TF_CONFIG ---
+{ "cluster": { "worker": [ "gpu037:2222" ] }, "task": { "type": "worker", "index": 0 } }
+--- Node 0 TF_CONFIG ---
+{ "cluster": { "worker": [ "gpu037:2222" ] }, "task": { "type": "worker", "index": 0 } }
+{ "cluster": { "worker": [ "gpu037:2222" ] }, "task": { "type": "worker", "index": 0 } }
+Number of workers: 4
+Job complete!

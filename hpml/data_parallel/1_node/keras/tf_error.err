@@ -1,0 +1,28 @@
+2026-03-02 12:45:38.655006: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-03-02 12:45:40.234860: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-03-02 12:45:44.902134: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1772477148.568825 2025574 gpu_device.cc:2020] Created device /device:GPU:0 with 31141 MB memory:  -> device: 0, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3d:00.0, compute capability: 7.0
+I0000 00:00:1772477148.569761 2025574 gpu_device.cc:2020] Created device /device:GPU:1 with 31141 MB memory:  -> device: 1, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3e:00.0, compute capability: 7.0
+I0000 00:00:1772477148.570601 2025574 gpu_device.cc:2020] Created device /device:GPU:2 with 31141 MB memory:  -> device: 2, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3f:00.0, compute capability: 7.0
+I0000 00:00:1772477148.571022 2025574 gpu_device.cc:2020] Created device /device:GPU:3 with 31141 MB memory:  -> device: 3, name: Tesla V100-PCIE-32GB, pci bus id: 0000:40:00.0, compute capability: 7.0
+I0000 00:00:1772477148.578634 2025574 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 31141 MB memory:  -> device: 0, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3d:00.0, compute capability: 7.0
+I0000 00:00:1772477148.578880 2025574 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:1 with 31141 MB memory:  -> device: 1, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3e:00.0, compute capability: 7.0
+I0000 00:00:1772477148.579114 2025574 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:2 with 31141 MB memory:  -> device: 2, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3f:00.0, compute capability: 7.0
+I0000 00:00:1772477148.579351 2025574 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:3 with 31141 MB memory:  -> device: 3, name: Tesla V100-PCIE-32GB, pci bus id: 0000:40:00.0, compute capability: 7.0
+/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/keras/src/layers/reshaping/flatten.py:37: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(**kwargs)
+2026-03-02 12:46:45.239640: I tensorflow/core/framework/local_rendezvous.cc:407] Local rendezvous is aborting with status: OUT_OF_RANGE: End of sequence
+	 [[{{node MultiDeviceIteratorGetNextFromShard}}]]
+2026-03-02 12:46:45.242564: I tensorflow/core/framework/local_rendezvous.cc:407] Local rendezvous is aborting with status: OUT_OF_RANGE: End of sequence
+	 [[{{node MultiDeviceIteratorGetNextFromShard}}]]
+2026-03-02 12:46:45.242697: I tensorflow/core/framework/local_rendezvous.cc:407] Local rendezvous is aborting with status: OUT_OF_RANGE: End of sequence
+	 [[{{node MultiDeviceIteratorGetNextFromShard}}]]
+	 [[RemoteCall]]
+2026-03-02 12:46:45.243765: I tensorflow/core/framework/local_rendezvous.cc:407] Local rendezvous is aborting with status: OUT_OF_RANGE: End of sequence
+	 [[{{node MultiDeviceIteratorGetNextFromShard}}]]
+	 [[RemoteCall]]
+2026-03-02 12:47:28.968430: I tensorflow/core/framework/local_rendezvous.cc:407] Local rendezvous is aborting with status: OUT_OF_RANGE: End of sequence
+	 [[{{node MultiDeviceIteratorGetNextFromShard}}]]
+	 [[RemoteCall]]

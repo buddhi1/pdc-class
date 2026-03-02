@@ -1,14 +1,14 @@
 #!/bin/bash
 #SBATCH --job-name=tf_multiworker2
-#SBATCH --partition=gpu1a100
-#SBATCH --gres=gpu:1
-#SBATCH --nodes=2
-#SBATCH --ntasks=2
+#SBATCH --partition=gpu4v100
+#SBATCH --gres=gpu:4
+#SBATCH --nodes=1
+#SBATCH --ntasks=4
 #SBATCH --time=00:20:00
-#SBATCH --output=tf_out.out   # Saves standard output to a file
-#SBATCH --error=tf_error.err    # Saves errors to a separate file
+#SBATCH --output=tf_out2.out   # Saves standard output to a file
+#SBATCH --error=tf_error2.err    # Saves errors to a separate file
 
-module load anaconda3
+module load  anaconda3 cudatoolkit/12.8.0_570.86.10 cuda12/cudnn/9.2.0.82
 
 conda activate tf310_216
 
