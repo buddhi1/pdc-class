@@ -34,6 +34,4 @@ hpml/data_parallel/1_node/ctl/training_checkpoints
 hpml/data_parallel/1_node/keras/training_1
 hpml/data_parallel/1_node/keras3/tf
 !hpml/data_parallel/1_node/keras3/tf/tf_multigpu.py
-hpml/data_parallel/n_node/sync
-!hpml/data_parallel/n_node/sync/main.py
-!hpml/data_parallel/n_node/sync/mnist.py
+hpml/data_parallel/n_nodes/sync/__pycache__
