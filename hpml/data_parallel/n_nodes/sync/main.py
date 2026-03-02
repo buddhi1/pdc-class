@@ -1,8 +1,35 @@
+"""
+conda activate tf310
+
+in Sulu (master)
+export TF_CONFIG='{
+    "cluster": {
+        "worker": ["169.254.225.101:12345", "169.254.150.235:12345"]
+    },
+    "task": {"type": "worker", "index": 0}
+}'
+
+in Spock (worker)
+export TF_CONFIG='{
+    "cluster": {
+        "worker": ["169.254.225.101:12345", "169.254.150.235:12345"]
+    },
+    "task": {"type": "worker", "index": 1}
+}'
+
+python main.py
+
+"""
+
 import os
 import json
 import tensorflow as tf
 import mnist
 from multiprocessing import util
+
+# We must force TensorFlow to use the legacy Keras backend 
+# to support MultiWorkerMirroredStrategy correctly.
+os.environ["TF_USE_LEGACY_KERAS"] = "1"
 
 per_worker_batch_size = 64
 tf_config = json.loads(os.environ['TF_CONFIG'])
@@ -49,6 +76,17 @@ with strategy.scope():
   optimizer = tf.keras.optimizers.RMSprop(learning_rate=0.001)
   train_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(
       name='train_accuracy')
+  
+  # 1. Define the loss object HERE, inside the scope
+  loss_object = tf.keras.losses.SparseCategoricalCrossentropy(
+      from_logits=True,
+      reduction=tf.keras.losses.Reduction.NONE)
+      
+  # 2. Define tracking variables HERE, inside the scope
+  epoch = tf.Variable(
+      initial_value=tf.constant(0, dtype=tf.dtypes.int64), name='epoch')
+  step_in_epoch = tf.Variable(
+      initial_value=tf.constant(0, dtype=tf.dtypes.int64), name='step_in_epoch')
 
 @tf.function
 def train_step(iterator):
@@ -59,24 +97,25 @@ def train_step(iterator):
     x, y = inputs
     with tf.GradientTape() as tape:
       predictions = multi_worker_model(x, training=True)
-      per_example_loss = tf.keras.losses.SparseCategoricalCrossentropy(
-          from_logits=True,
-          reduction=tf.keras.losses.Reduction.NONE)(y, predictions)
-      loss = tf.nn.compute_average_loss(per_example_loss)
+      
+      # 3. Call the pre-instantiated loss object
+      per_example_loss = loss_object(y, predictions)
+      
+      # 4. Pass the global_batch_size for correct math
+      loss = tf.nn.compute_average_loss(per_example_loss, global_batch_size=global_batch_size)
+      
       model_losses = multi_worker_model.losses
       if model_losses:
         loss += tf.nn.scale_regularization_loss(tf.add_n(model_losses))
 
     grads = tape.gradient(loss, multi_worker_model.trainable_variables)
-    optimizer.apply_gradients(
-        zip(grads, multi_worker_model.trainable_variables))
+    optimizer.apply_gradients(zip(grads, multi_worker_model.trainable_variables))
     train_accuracy.update_state(y, predictions)
 
     return loss
 
   per_replica_losses = strategy.run(step_fn, args=(next(iterator),))
-  return strategy.reduce(
-      tf.distribute.ReduceOp.SUM, per_replica_losses, axis=None)
+  return strategy.reduce(tf.distribute.ReduceOp.SUM, per_replica_losses, axis=None)
 
 epoch = tf.Variable(
     initial_value=tf.constant(0, dtype=tf.dtypes.int64), name='epoch')

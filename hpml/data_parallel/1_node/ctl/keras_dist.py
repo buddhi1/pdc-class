@@ -36,6 +36,7 @@ def scale(image, label):
 
   return image, label
 
+# CPU data pipeline to chunk the dataset into blocks of 128 images.
 train_dataset = mnist_train.map(scale).cache().shuffle(BUFFER_SIZE).batch(BATCH_SIZE)
 eval_dataset = mnist_test.map(scale).batch(BATCH_SIZE)
 

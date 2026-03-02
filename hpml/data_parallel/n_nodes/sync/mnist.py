@@ -15,9 +15,22 @@ def mnist_dataset(batch_size):
 def dataset_fn(global_batch_size, input_context):
   batch_size = input_context.get_per_replica_batch_size(global_batch_size)
   dataset = mnist_dataset(batch_size)
+  
+  # 1. Manually shard the data across workers
   dataset = dataset.shard(input_context.num_input_pipelines,
                           input_context.input_pipeline_id)
-  dataset = dataset.batch(batch_size)
+                          
+  # 2. Repeat infinitely BEFORE batching
+  dataset = dataset.repeat()
+  
+  # 3. Batch with drop_remainder=True to prevent mismatched tensor shapes
+  dataset = dataset.batch(batch_size, drop_remainder=True)
+  
+  # 4. Disable auto-sharding so it doesn't fight your manual sharding
+  options = tf.data.Options()
+  options.experimental_distribute.auto_shard_policy = tf.data.experimental.AutoShardPolicy.OFF
+  dataset = dataset.with_options(options)
+  
   return dataset
 
 def build_cnn_model():

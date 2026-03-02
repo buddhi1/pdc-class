@@ -1,18 +1,70 @@
-srun -p gpu2v100 -N 1 -n 64 -t 0:30:0 --pty bash 
+=====================================================
+Single node multi device experiments. Legacy Keras
+=====================================================
+Secure resources
+---------------------------------------------------
+srun -p gpu2v100 -gres=gpu:2 -N 1 -n 64 -t 0:30:0 --pty bash 
+
+Load anaconda module
+---------------------------------------------------
 ml  anaconda3
-conda create --name tf-gpu tensorflow-gpu
-conda activate tf-gpu
 
+Following is only required for first time setup
+----------------------------------------------------
+conda create --name tf310 python=3.10 -y  
+pip install --upgrade pip
+pip install tensorflow[and-cuda]
+pip install tf_keras
 
-srun -p compute1 -N 2 -n 128 -t 0:30:0 --pty bash 
-ml  anaconda3
-conda create --name tf-gpu tensorflow-gpu
-conda activate tf-gpu
+Activate the conda environment
+----------------------------------------------------
+conda activate tf310
 
-How to get the list of available nodes: echo $SLURM_NODELIST 
+How to get the list of available nodes: 
+    echo $SLURM_NODELIST 
 ssh <other node id>
 
-Acces to node(s) and run the following
+=====================================================
+Multi node multi device experiments. Legacy Keras
+=====================================================
+Secure resources
+---------------------------------------------------
+srun -p compute1 -N 2 -n 128 -t 0:30:0 --pty bash 
+
+Load anaconda module
+---------------------------------------------------
 ml  anaconda3
-conda create --name tf-gpu tensorflow-gpu
-conda activate tf-gpu
+
+Following is only required for first time setup
+----------------------------------------------------
+conda create --name tf310 python=3.10 -y  
+pip install --upgrade pip
+pip install tensorflow[and-cuda]
+pip install tf_keras
+
+Activate the conda environment
+----------------------------------------------------
+conda activate tf310
+
+How to get the list of available nodes: 
+    echo $SLURM_NODELIST 
+ssh <other node id>
+
+Load anaconda module
+---------------------------------------------------
+ml  anaconda3
+
+Following is only required for first time setup
+----------------------------------------------------
+conda create --name tf310 python=3.10 -y  
+pip install --upgrade pip
+pip install tensorflow[and-cuda]
+pip install tf_keras
+
+Activate the conda environment
+----------------------------------------------------
+conda activate tf310
+
+=====================================================
+Keras 3 environment
+=====================================================

@@ -1,4 +1,6 @@
-
+'''
+conda activate tf310
+'''
 import tensorflow as tf
 import os
 import json as json
