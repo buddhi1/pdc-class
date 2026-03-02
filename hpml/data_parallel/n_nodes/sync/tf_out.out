@@ -1,0 +1,15 @@
+Master Node built the worker list: [ "gpu039:2222", "gpu040:2222" ]
+Deploying tasks to cluster...
+--- Node 0 TF_CONFIG ---
+--- Node 1 TF_CONFIG ---
+{ "cluster": { "worker": [ "gpu039:2222", "gpu040:2222" ] }, "task": { "type": "worker", "index": 1 } }
+{ "cluster": { "worker": [ "gpu039:2222", "gpu040:2222" ] }, "task": { "type": "worker", "index": 0 } }
+Number of workers: 2
+Epoch: 0, accuracy: 0.931380, train_loss: 0.235002.
+Epoch: 1, accuracy: 0.980534, train_loss: 0.074811.
+Epoch: 2, accuracy: 0.987370, train_loss: 0.050263.
+Number of workers: 2
+Epoch: 0, accuracy: 0.931380, train_loss: 0.235002.
+Epoch: 1, accuracy: 0.980534, train_loss: 0.074811.
+Epoch: 2, accuracy: 0.987370, train_loss: 0.050263.
+Job complete!

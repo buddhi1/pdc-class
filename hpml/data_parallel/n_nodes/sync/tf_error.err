@@ -1,0 +1,31 @@
+2026-03-02 04:58:51.084576: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-03-02 04:58:51.084596: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1772449136.459150 1317106 gpu_device.cc:2342] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.
+Skipping registering GPU devices...
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1772449136.459019 1317849 gpu_device.cc:2342] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.
+Skipping registering GPU devices...
+2026-03-02 04:58:56.489441: I external/local_xla/xla/tsl/distributed_runtime/coordination/coordination_service.cc:226] Initializing CoordinationService
+I0000 00:00:1772449136.492559 1317849 grpc_server_lib.cc:466] Started server with target: grpc://gpu040:2222
+I0000 00:00:1772449136.493095 1317106 grpc_server_lib.cc:466] Started server with target: grpc://gpu039:2222
+2026-03-02 04:58:56.516146: I external/local_xla/xla/tsl/distributed_runtime/coordination/coordination_service.h:526] /job:worker/replica:0/task:0 has connected to coordination service. Incarnation: 1755772687062961716
+2026-03-02 04:58:56.516186: I external/local_xla/xla/tsl/distributed_runtime/coordination/coordination_service.cc:506] Waiting for 1/2 tasks to connect.
+2026-03-02 04:58:56.516191: I external/local_xla/xla/tsl/distributed_runtime/coordination/coordination_service.cc:509] Example stragglers:
+/job:worker/replica:0/task:1
+2026-03-02 04:58:56.516372: I external/local_xla/xla/tsl/distributed_runtime/coordination/coordination_service_agent.cc:344] Coordination agent has successfully connected.
+2026-03-02 04:58:56.516642: I external/local_xla/xla/tsl/distributed_runtime/coordination/coordination_service.h:526] /job:worker/replica:0/task:1 has connected to coordination service. Incarnation: 2374317322049297362
+2026-03-02 04:58:56.516650: I external/local_xla/xla/tsl/distributed_runtime/coordination/coordination_service.cc:506] Waiting for 0/2 tasks to connect.
+2026-03-02 04:58:56.517118: I external/local_xla/xla/tsl/distributed_runtime/coordination/coordination_service_agent.cc:344] Coordination agent has successfully connected.
+2026-03-02 04:58:56.517997: I external/local_xla/xla/tsl/distributed_runtime/coordination/coordination_service.cc:1414] Barrier(WaitForAllTasks::1908913167781886125::0) has passed with status: OK
+2026-03-02 04:58:57.896835: W tensorflow/core/framework/dataset.cc:993] Input of GeneratorDatasetOp::Dataset will not be optimized because the dataset does not implement the AsGraphDefInternal() method needed to apply optimizations.
+2026-03-02 04:58:57.896912: W tensorflow/core/framework/dataset.cc:993] Input of GeneratorDatasetOp::Dataset will not be optimized because the dataset does not implement the AsGraphDefInternal() method needed to apply optimizations.
+2026-03-02 04:59:49.069790: W tensorflow/core/framework/dataset.cc:993] Input of GeneratorDatasetOp::Dataset will not be optimized because the dataset does not implement the AsGraphDefInternal() method needed to apply optimizations.
+2026-03-02 04:59:49.070576: W tensorflow/core/framework/dataset.cc:993] Input of GeneratorDatasetOp::Dataset will not be optimized because the dataset does not implement the AsGraphDefInternal() method needed to apply optimizations.
+2026-03-02 05:01:11.085827: W tensorflow/core/framework/dataset.cc:993] Input of GeneratorDatasetOp::Dataset will not be optimized because the dataset does not implement the AsGraphDefInternal() method needed to apply optimizations.
+2026-03-02 05:01:11.086952: W tensorflow/core/framework/dataset.cc:993] Input of GeneratorDatasetOp::Dataset will not be optimized because the dataset does not implement the AsGraphDefInternal() method needed to apply optimizations.
+2026-03-02 05:02:42.505298: E tensorflow/core/common_runtime/base_collective_executor.cc:248] BaseCollectiveExecutor::StartAbort UNAVAILABLE: Error reported from /job:worker/task:1: The following tasks are unhealthy (stopped sending heartbeats):
+/job:worker/replica:0/task:1
+The tasks have crashed. Check the task logs for an earlier error, or scheduler events (e.g. preemption, eviction) to debug further. [type.googleapis.com/tensorflow.CoordinationServiceError='\"\n\n\x06worker\x10\x01']

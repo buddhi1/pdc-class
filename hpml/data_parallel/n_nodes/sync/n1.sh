@@ -3,7 +3,7 @@
 # Set TF_CONFIG for the Chief Worker on Node 1
 export TF_CONFIG='{
   "cluster": {
-    "worker": ["gpu027:2222", "gpu028:2222"]
+    "worker": ["gpu039:2242", "gpu040:2242"]
   },
   "task": {"type": "worker", "index": 0}
 }'
