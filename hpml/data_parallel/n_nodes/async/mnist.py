@@ -4,13 +4,14 @@ conda activate tf310
 Sulu
 python mnist.py --role ps --index 0
 python mnist.py --role chief --index 0
+python mnist.py --role worker --index 1
 
 Spock
 python mnist.py --role worker --index 0
 
 debugging
-lsof -t -i:2000 | xargs -r kill -9
-lsof -t -i:2001 | xargs -r kill -9
+lsof -t -i:2000,2001,2002 | xargs -r kill -9
+
 '''
 
 import os
