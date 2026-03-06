@@ -1,0 +1,336 @@
+srun: warning: can't honor --ntasks-per-node set to 1 which doesn't match the requested tasks 4 with the number of requested nodes 1. Ignoring --ntasks-per-node.
+2026-03-02 13:00:08.614432: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-03-02 13:00:08.614446: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-03-02 13:00:08.614423: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-03-02 13:00:08.614454: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-03-02 13:00:10.512759: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-03-02 13:00:10.512774: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-03-02 13:00:10.512781: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-03-02 13:00:10.512779: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-03-02 13:00:15.389575: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-03-02 13:00:15.389584: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-03-02 13:00:15.389588: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-03-02 13:00:15.389594: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1772478019.323225 1987054 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 30221 MB memory:  -> device: 0, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3d:00.0, compute capability: 7.0
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1772478019.325531 1987053 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 30221 MB memory:  -> device: 0, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3d:00.0, compute capability: 7.0
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1772478019.325669 1987055 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 30221 MB memory:  -> device: 0, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3d:00.0, compute capability: 7.0
+I0000 00:00:1772478019.326516 1987054 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:1 with 30221 MB memory:  -> device: 1, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3e:00.0, compute capability: 7.0
+I0000 00:00:1772478019.326709 1987053 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:1 with 30221 MB memory:  -> device: 1, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3e:00.0, compute capability: 7.0
+I0000 00:00:1772478019.326745 1987055 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:1 with 30221 MB memory:  -> device: 1, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3e:00.0, compute capability: 7.0
+I0000 00:00:1772478019.327850 1987054 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:2 with 30221 MB memory:  -> device: 2, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3f:00.0, compute capability: 7.0
+I0000 00:00:1772478019.328397 1987053 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:2 with 30221 MB memory:  -> device: 2, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3f:00.0, compute capability: 7.0
+I0000 00:00:1772478019.329150 1987055 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:2 with 30221 MB memory:  -> device: 2, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3f:00.0, compute capability: 7.0
+I0000 00:00:1772478019.329787 1987054 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:3 with 30221 MB memory:  -> device: 3, name: Tesla V100-PCIE-32GB, pci bus id: 0000:40:00.0, compute capability: 7.0
+I0000 00:00:1772478019.330073 1987055 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:3 with 30221 MB memory:  -> device: 3, name: Tesla V100-PCIE-32GB, pci bus id: 0000:40:00.0, compute capability: 7.0
+I0000 00:00:1772478019.330332 1987053 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:3 with 30221 MB memory:  -> device: 3, name: Tesla V100-PCIE-32GB, pci bus id: 0000:40:00.0, compute capability: 7.0
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1772478019.330771 1987056 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 30221 MB memory:  -> device: 0, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3d:00.0, compute capability: 7.0
+I0000 00:00:1772478019.331360 1987056 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:1 with 30221 MB memory:  -> device: 1, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3e:00.0, compute capability: 7.0
+I0000 00:00:1772478019.332296 1987056 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:2 with 30221 MB memory:  -> device: 2, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3f:00.0, compute capability: 7.0
+I0000 00:00:1772478019.332923 1987056 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:3 with 30221 MB memory:  -> device: 3, name: Tesla V100-PCIE-32GB, pci bus id: 0000:40:00.0, compute capability: 7.0
+I0000 00:00:1772478019.350607 1987053 gpu_device.cc:2020] Created device /job:worker/replica:0/task:0/device:GPU:0 with 30221 MB memory:  -> device: 0, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3d:00.0, compute capability: 7.0
+I0000 00:00:1772478019.350981 1987055 gpu_device.cc:2020] Created device /job:worker/replica:0/task:0/device:GPU:0 with 30221 MB memory:  -> device: 0, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3d:00.0, compute capability: 7.0
+I0000 00:00:1772478019.351427 1987053 gpu_device.cc:2020] Created device /job:worker/replica:0/task:0/device:GPU:1 with 30221 MB memory:  -> device: 1, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3e:00.0, compute capability: 7.0
+I0000 00:00:1772478019.352048 1987055 gpu_device.cc:2020] Created device /job:worker/replica:0/task:0/device:GPU:1 with 30221 MB memory:  -> device: 1, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3e:00.0, compute capability: 7.0
+I0000 00:00:1772478019.352453 1987053 gpu_device.cc:2020] Created device /job:worker/replica:0/task:0/device:GPU:2 with 30221 MB memory:  -> device: 2, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3f:00.0, compute capability: 7.0
+I0000 00:00:1772478019.352761 1987055 gpu_device.cc:2020] Created device /job:worker/replica:0/task:0/device:GPU:2 with 30221 MB memory:  -> device: 2, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3f:00.0, compute capability: 7.0
+I0000 00:00:1772478019.353437 1987055 gpu_device.cc:2020] Created device /job:worker/replica:0/task:0/device:GPU:3 with 30221 MB memory:  -> device: 3, name: Tesla V100-PCIE-32GB, pci bus id: 0000:40:00.0, compute capability: 7.0
+I0000 00:00:1772478019.353555 1987056 gpu_device.cc:2020] Created device /job:worker/replica:0/task:0/device:GPU:0 with 30221 MB memory:  -> device: 0, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3d:00.0, compute capability: 7.0
+I0000 00:00:1772478019.353801 1987053 gpu_device.cc:2020] Created device /job:worker/replica:0/task:0/device:GPU:3 with 30221 MB memory:  -> device: 3, name: Tesla V100-PCIE-32GB, pci bus id: 0000:40:00.0, compute capability: 7.0
+I0000 00:00:1772478019.353931 1987054 gpu_device.cc:2020] Created device /job:worker/replica:0/task:0/device:GPU:0 with 30221 MB memory:  -> device: 0, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3d:00.0, compute capability: 7.0
+I0000 00:00:1772478019.354043 1987056 gpu_device.cc:2020] Created device /job:worker/replica:0/task:0/device:GPU:1 with 30221 MB memory:  -> device: 1, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3e:00.0, compute capability: 7.0
+I0000 00:00:1772478019.354474 1987054 gpu_device.cc:2020] Created device /job:worker/replica:0/task:0/device:GPU:1 with 30221 MB memory:  -> device: 1, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3e:00.0, compute capability: 7.0
+I0000 00:00:1772478019.354519 1987056 gpu_device.cc:2020] Created device /job:worker/replica:0/task:0/device:GPU:2 with 30221 MB memory:  -> device: 2, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3f:00.0, compute capability: 7.0
+I0000 00:00:1772478019.354989 1987056 gpu_device.cc:2020] Created device /job:worker/replica:0/task:0/device:GPU:3 with 30221 MB memory:  -> device: 3, name: Tesla V100-PCIE-32GB, pci bus id: 0000:40:00.0, compute capability: 7.0
+I0000 00:00:1772478019.355012 1987054 gpu_device.cc:2020] Created device /job:worker/replica:0/task:0/device:GPU:2 with 30221 MB memory:  -> device: 2, name: Tesla V100-PCIE-32GB, pci bus id: 0000:3f:00.0, compute capability: 7.0
+I0000 00:00:1772478019.355434 1987054 gpu_device.cc:2020] Created device /job:worker/replica:0/task:0/device:GPU:3 with 30221 MB memory:  -> device: 3, name: Tesla V100-PCIE-32GB, pci bus id: 0000:40:00.0, compute capability: 7.0
+E0000 00:00:1772478019.373091 1987053 chttp2_server.cc:1177] UNKNOWN:No address added out of total 1 resolved for '0.0.0.0:2222' {created_time:"2026-03-02T13:00:19.372606727-06:00", children:[FAILED_PRECONDITION:Failed to add any wildcard listeners: Error in listen: Address already in useError in bind for address '0.0.0.0:2222': Address already in use]}
+E0000 00:00:1772478019.373061 1987054 chttp2_server.cc:1177] UNKNOWN:No address added out of total 1 resolved for '0.0.0.0:2222' {created_time:"2026-03-02T13:00:19.372568089-06:00", children:[FAILED_PRECONDITION:Failed to add any wildcard listeners: Error in listen: Address already in useError in bind for address '0.0.0.0:2222': Address already in use]}
+E0000 00:00:1772478019.373066 1987056 chttp2_server.cc:1177] UNKNOWN:No address added out of total 1 resolved for '0.0.0.0:2222' {created_time:"2026-03-02T13:00:19.372588154-06:00", children:[FAILED_PRECONDITION:Failed to add any wildcard listeners: Error in listen: Address already in useError in bind for address '0.0.0.0:2222': Address already in use]}
+E0000 00:00:1772478019.374417 1987053 grpc_server_lib.cc:617] UNKNOWN: Could not start gRPC server
+E0000 00:00:1772478019.374688 1987056 grpc_server_lib.cc:617] UNKNOWN: Could not start gRPC server
+E0000 00:00:1772478019.374929 1987054 grpc_server_lib.cc:617] UNKNOWN: Could not start gRPC server
+E0000 00:00:1772478019.375031 1987053 context_distributed_manager.cc:1047] Could not start gRPC server
+E0000 00:00:1772478019.375361 1987056 context_distributed_manager.cc:1047] Could not start gRPC server
+E0000 00:00:1772478019.375675 1987054 context_distributed_manager.cc:1047] Could not start gRPC server
+Traceback (most recent call last):
+  File "/work/lkv407/pdc-class/hpml/data_parallel/n_nodes/sync/main.py", line 66, in <module>
+Traceback (most recent call last):
+  File "/work/lkv407/pdc-class/hpml/data_parallel/n_nodes/sync/main.py", line 66, in <module>
+Traceback (most recent call last):
+  File "/work/lkv407/pdc-class/hpml/data_parallel/n_nodes/sync/main.py", line 66, in <module>
+    strategy = tf.distribute.MultiWorkerMirroredStrategy()
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tensorflow/python/distribute/collective_all_reduce_strategy.py", line 187, in __init__
+    strategy = tf.distribute.MultiWorkerMirroredStrategy()
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tensorflow/python/distribute/collective_all_reduce_strategy.py", line 187, in __init__
+    strategy = tf.distribute.MultiWorkerMirroredStrategy()
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tensorflow/python/distribute/collective_all_reduce_strategy.py", line 187, in __init__
+    CollectiveAllReduceExtended(
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tensorflow/python/distribute/collective_all_reduce_strategy.py", line 381, in __init__
+2026-03-02 13:00:19.377737: I external/local_xla/xla/tsl/distributed_runtime/coordination/coordination_service.cc:226] Initializing CoordinationService
+    CollectiveAllReduceExtended(
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tensorflow/python/distribute/collective_all_reduce_strategy.py", line 381, in __init__
+    CollectiveAllReduceExtended(
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tensorflow/python/distribute/collective_all_reduce_strategy.py", line 381, in __init__
+    self._initialize_strategy(self._cluster_resolver, devices=devices)
+    self._initialize_strategy(self._cluster_resolver, devices=devices)
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tensorflow/python/distribute/collective_all_reduce_strategy.py", line 401, in _initialize_strategy
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tensorflow/python/distribute/collective_all_reduce_strategy.py", line 401, in _initialize_strategy
+    self._initialize_strategy(self._cluster_resolver, devices=devices)
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tensorflow/python/distribute/collective_all_reduce_strategy.py", line 401, in _initialize_strategy
+    self._initialize_multi_worker(cluster_resolver)
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tensorflow/python/distribute/collective_all_reduce_strategy.py", line 602, in _initialize_multi_worker
+    self._initialize_multi_worker(cluster_resolver)
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tensorflow/python/distribute/collective_all_reduce_strategy.py", line 602, in _initialize_multi_worker
+    self._initialize_multi_worker(cluster_resolver)
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tensorflow/python/distribute/collective_all_reduce_strategy.py", line 602, in _initialize_multi_worker
+    context.context().ensure_initialized()
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tensorflow/python/eager/context.py", line 745, in ensure_initialized
+    context.context().ensure_initialized()
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tensorflow/python/eager/context.py", line 745, in ensure_initialized
+    context.context().ensure_initialized()
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tensorflow/python/eager/context.py", line 745, in ensure_initialized
+I0000 00:00:1772478019.380128 1987055 grpc_server_lib.cc:466] Started server with target: grpc://gpu037:2222
+    pywrap_tfe.TFE_EnableCollectiveOps(context_handle, server_def_str)
+    pywrap_tfe.TFE_EnableCollectiveOps(context_handle, server_def_str)
+tensorflow.python.framework.errors_impl.UnknownError: Could not start gRPC server
+tensorflow.python.framework.errors_impl.UnknownError: Could not start gRPC server
+    pywrap_tfe.TFE_EnableCollectiveOps(context_handle, server_def_str)
+tensorflow.python.framework.errors_impl.UnknownError: Could not start gRPC server
+2026-03-02 13:00:19.391778: I external/local_xla/xla/tsl/distributed_runtime/coordination/coordination_service.h:526] /job:worker/replica:0/task:0 has connected to coordination service. Incarnation: 8647166816680210715
+2026-03-02 13:00:19.391803: I external/local_xla/xla/tsl/distributed_runtime/coordination/coordination_service.cc:506] Waiting for 0/1 tasks to connect.
+2026-03-02 13:00:19.392313: I external/local_xla/xla/tsl/distributed_runtime/coordination/coordination_service_agent.cc:344] Coordination agent has successfully connected.
+2026-03-02 13:00:19.394174: I external/local_xla/xla/tsl/distributed_runtime/coordination/coordination_service.cc:1414] Barrier(WaitForAllTasks::14568383074501819577::0) has passed with status: OK
+srun: error: gpu037: task 0: Exited with exit code 1
+srun: error: gpu037: task 3: Exited with exit code 1
+srun: error: gpu037: task 1: Exited with exit code 1
+2026-03-02 13:00:23.825616: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:466] Loaded runtime CuDNN library: 9.2.0 but source was compiled with: 9.3.0.  CuDNN library needs to have matching major version and equal or higher minor version. If using a binary install, upgrade your CuDNN library.  If building from sources, make sure the library loaded at runtime is compatible with the version specified during compile configuration.
+2026-03-02 13:00:23.827116: W tensorflow/core/framework/op_kernel.cc:1855] OP_REQUIRES failed at conv_ops_fused_impl.h:625 : INVALID_ARGUMENT: No DNN in stream executor.
+2026-03-02 13:00:23.827167: I tensorflow/core/framework/local_rendezvous.cc:407] Local rendezvous is aborting with status: INVALID_ARGUMENT: No DNN in stream executor.
+	 [[{{node sequential/conv2d/Relu}}]]
+2026-03-02 13:00:23.827188: I tensorflow/core/framework/local_rendezvous.cc:426] Local rendezvous recv item cancelled. Key hash: 11067048747568013507
+2026-03-02 13:00:23.827200: I tensorflow/core/framework/local_rendezvous.cc:407] Local rendezvous is aborting with status: INVALID_ARGUMENT: No DNN in stream executor.
+	 [[{{node sequential/conv2d/Relu}}]]
+	 [[CollectiveReduceV2_6/_93]]
+2026-03-02 13:00:23.827278: I tensorflow/core/framework/local_rendezvous.cc:426] Local rendezvous recv item cancelled. Key hash: 14387447819000202340
+2026-03-02 13:00:23.827293: I tensorflow/core/framework/local_rendezvous.cc:426] Local rendezvous recv item cancelled. Key hash: 7099565552085110601
+2026-03-02 13:00:23.827303: I tensorflow/core/framework/local_rendezvous.cc:426] Local rendezvous recv item cancelled. Key hash: 9389616622042427159
+2026-03-02 13:00:23.827314: I tensorflow/core/framework/local_rendezvous.cc:426] Local rendezvous recv item cancelled. Key hash: 1167223673403625990
+2026-03-02 13:00:23.827324: I tensorflow/core/framework/local_rendezvous.cc:426] Local rendezvous recv item cancelled. Key hash: 7885205785635267661
+2026-03-02 13:00:23.827334: I tensorflow/core/framework/local_rendezvous.cc:426] Local rendezvous recv item cancelled. Key hash: 17994213978887500962
+2026-03-02 13:00:23.827344: I tensorflow/core/framework/local_rendezvous.cc:426] Local rendezvous recv item cancelled. Key hash: 12555816014605826434
+2026-03-02 13:00:23.827362: I tensorflow/core/framework/local_rendezvous.cc:426] Local rendezvous recv item cancelled. Key hash: 13502039793384118811
+2026-03-02 13:00:23.831967: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:466] Loaded runtime CuDNN library: 9.2.0 but source was compiled with: 9.3.0.  CuDNN library needs to have matching major version and equal or higher minor version. If using a binary install, upgrade your CuDNN library.  If building from sources, make sure the library loaded at runtime is compatible with the version specified during compile configuration.
+2026-03-02 13:00:23.832689: W tensorflow/core/framework/op_kernel.cc:1855] OP_REQUIRES failed at conv_ops_fused_impl.h:625 : INVALID_ARGUMENT: No DNN in stream executor.
+2026-03-02 13:00:23.836103: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:466] Loaded runtime CuDNN library: 9.2.0 but source was compiled with: 9.3.0.  CuDNN library needs to have matching major version and equal or higher minor version. If using a binary install, upgrade your CuDNN library.  If building from sources, make sure the library loaded at runtime is compatible with the version specified during compile configuration.
+2026-03-02 13:00:23.836799: W tensorflow/core/framework/op_kernel.cc:1855] OP_REQUIRES failed at conv_ops_fused_impl.h:625 : INVALID_ARGUMENT: No DNN in stream executor.
+2026-03-02 13:00:23.836817: I tensorflow/core/framework/local_rendezvous.cc:407] Local rendezvous is aborting with status: INVALID_ARGUMENT: No DNN in stream executor.
+	 [[{{node replica_2/sequential/conv2d/Relu}}]]
+2026-03-02 13:00:23.840105: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:466] Loaded runtime CuDNN library: 9.2.0 but source was compiled with: 9.3.0.  CuDNN library needs to have matching major version and equal or higher minor version. If using a binary install, upgrade your CuDNN library.  If building from sources, make sure the library loaded at runtime is compatible with the version specified during compile configuration.
+2026-03-02 13:00:23.840794: W tensorflow/core/framework/op_kernel.cc:1855] OP_REQUIRES failed at conv_ops_fused_impl.h:625 : INVALID_ARGUMENT: No DNN in stream executor.
+Traceback (most recent call last):
+  File "/work/lkv407/pdc-class/hpml/data_parallel/n_nodes/sync/main.py", line 150, in <module>
+    total_loss += train_step(iterator)
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tensorflow/python/util/traceback_utils.py", line 153, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tensorflow/python/eager/execute.py", line 53, in quick_execute
+    tensors = pywrap_tfe.TFE_Py_Execute(ctx._handle, device_name, op_name,
+tensorflow.python.framework.errors_impl.InvalidArgumentError: Graph execution error:
+
+Detected at node sequential/conv2d/Relu defined at (most recent call last):
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/threading.py", line 973, in _bootstrap
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+
+  File "/tmp/__autograph_generated_file1d79043f.py", line 20, in step_fn
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 65, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/training.py", line 588, in __call__
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 65, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/base_layer.py", line 1155, in __call__
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 96, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/sequential.py", line 404, in call
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/functional.py", line 514, in call
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/functional.py", line 671, in _run_internal_graph
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 65, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/base_layer.py", line 1155, in __call__
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 96, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/layers/convolutional/base_conv.py", line 320, in call
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/activations.py", line 306, in relu
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/backend.py", line 5397, in relu
+
+Detected at node sequential/conv2d/Relu defined at (most recent call last):
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/threading.py", line 973, in _bootstrap
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+
+  File "/tmp/__autograph_generated_file1d79043f.py", line 20, in step_fn
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 65, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/training.py", line 588, in __call__
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 65, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/base_layer.py", line 1155, in __call__
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 96, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/sequential.py", line 404, in call
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/functional.py", line 514, in call
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/functional.py", line 671, in _run_internal_graph
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 65, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/base_layer.py", line 1155, in __call__
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 96, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/layers/convolutional/base_conv.py", line 320, in call
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/activations.py", line 306, in relu
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/backend.py", line 5397, in relu
+
+Detected at node replica_3/sequential/conv2d/Relu defined at (most recent call last):
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/threading.py", line 973, in _bootstrap
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+
+  File "/tmp/__autograph_generated_file1d79043f.py", line 20, in step_fn
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 65, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/training.py", line 588, in __call__
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 65, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/base_layer.py", line 1155, in __call__
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 96, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/sequential.py", line 404, in call
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/functional.py", line 514, in call
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/functional.py", line 671, in _run_internal_graph
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 65, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/base_layer.py", line 1155, in __call__
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 96, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/layers/convolutional/base_conv.py", line 320, in call
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/activations.py", line 306, in relu
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/backend.py", line 5397, in relu
+
+Detected at node replica_2/sequential/conv2d/Relu defined at (most recent call last):
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/threading.py", line 973, in _bootstrap
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+
+  File "/tmp/__autograph_generated_file1d79043f.py", line 20, in step_fn
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 65, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/training.py", line 588, in __call__
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 65, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/base_layer.py", line 1155, in __call__
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 96, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/sequential.py", line 404, in call
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/functional.py", line 514, in call
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/functional.py", line 671, in _run_internal_graph
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 65, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/base_layer.py", line 1155, in __call__
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 96, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/layers/convolutional/base_conv.py", line 320, in call
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/activations.py", line 306, in relu
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/backend.py", line 5397, in relu
+
+Detected at node replica_1/sequential/conv2d/Relu defined at (most recent call last):
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/threading.py", line 973, in _bootstrap
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+
+  File "/tmp/__autograph_generated_file1d79043f.py", line 20, in step_fn
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 65, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/training.py", line 588, in __call__
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 65, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/base_layer.py", line 1155, in __call__
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 96, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/sequential.py", line 404, in call
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/functional.py", line 514, in call
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/functional.py", line 671, in _run_internal_graph
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 65, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/engine/base_layer.py", line 1155, in __call__
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/utils/traceback_utils.py", line 96, in error_handler
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/layers/convolutional/base_conv.py", line 320, in call
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/activations.py", line 306, in relu
+
+  File "/home/lkv407/.conda/envs/tf310_216/lib/python3.10/site-packages/tf_keras/src/backend.py", line 5397, in relu
+
+5 root error(s) found.
+  (0) INVALID_ARGUMENT:  No DNN in stream executor.
+	 [[{{node sequential/conv2d/Relu}}]]
+	 [[CollectiveReduceV2_6/_93]]
+  (1) INVALID_ARGUMENT:  No DNN in stream executor.
+	 [[{{node sequential/conv2d/Relu}}]]
+  (2) INVALID_ARGUMENT:  No DNN in stream executor.
+	 [[{{node replica_3/sequential/conv2d/Relu}}]]
+  (3) INVALID_ARGUMENT:  No DNN in stream executor.
+	 [[{{node replica_2/sequential/conv2d/Relu}}]]
+  (4) INVALID_ARGUMENT:  No DNN in stream executor.
+	 [[{{node replica_1/sequential/conv2d/Relu}}]]
+0 successful operations.
+0 derived errors ignored. [Op:__inference_train_step_3143]
+srun: error: gpu037: task 2: Exited with exit code 1
