@@ -39,7 +39,7 @@ To run the examples in this repository, you will generally need:
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/buddhi1/pdc-class.git](https://github.com/buddhi1/pdc-class.git)
+    git clone https://github.com/buddhi1/pdc-class.git
     cd pdc-class
     ```
 
