@@ -19,6 +19,8 @@ pdc/mpi/src/*
 !pdc/cuda/src2/Makefile
 !pdc/cuda_gdb/Makefile
 !pdc/mpi/src/Makefile
+!pdc/cuda/src2/Common
+
 
 hpml/cuda/src1/*
 hpml/cuda/src2/*
