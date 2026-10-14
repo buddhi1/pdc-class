@@ -10,6 +10,7 @@ pdc/mpi/src/*
 !pdc/openmp/src2/*.c
 !pdc/cuda/src/*.cu
 !pdc/cuda/src2/*.cu
+!pdc/cuda/src2/*.h
 !pdc/mpi/src/*.c
 
 !pdc/pthreads/src/Makefile
