@@ -1,7 +1,5 @@
 # CUDA Matrix Multiplication Progression (PDC)
 
-> **Animated walkthrough:** step through every example here, with the matching source lines highlighted, in the [Visual Lab: CUDA matrix-multiply progression](https://buddhi1.github.io/pdc-class/#/pdc/cuda-matmul).
-
 A step-by-step series of matrix-multiply kernels (plus one reduction and one memory benchmark) that matches the "Introduction to CUDA" slides. [`README.txt`](README.txt) gives the compile and run commands for the core examples. This file summarizes **all** the programs. OpenMP-offload versions of the core kernels are in [`../../openmp/src1.5`](../../openmp/src1.5).
 
 ## Build and run

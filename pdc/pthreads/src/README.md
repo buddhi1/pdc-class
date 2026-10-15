@@ -1,7 +1,5 @@
 # Pthreads Examples (PDC)
 
-> **Animated walkthrough:** step through every example here, with the matching source lines highlighted, in the [Visual Lab: POSIX threads](https://buddhi1.github.io/pdc-class/#/pdc/pthreads).
-
 Small POSIX-threads programs that introduce thread creation, lifecycle, synchronization, thread-local data, and a Monte Carlo π case study on false sharing.
 
 ## Build and run

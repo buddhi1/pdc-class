@@ -1,7 +1,5 @@
 # CUDA Fundamentals and Multi-GPU Matrix Multiply (HPML)
 
-> **Animated walkthrough:** step through every example here, with the matching source lines highlighted, in the [Visual Lab: CUDA fundamentals & multi-GPU](https://buddhi1.github.io/pdc-class/#/hpml/cuda-fundamentals).
-
 The HPML version of the CUDA basics, extended with timing done properly and two multi-GPU matrix multiplies. Most files are close variants of [`pdc/cuda/src`](../../../pdc/cuda/src). The differences are noted below.
 
 ## Build and run

@@ -1,7 +1,5 @@
 # OpenMP Basics, Part 1 (PDC)
 
-> **Animated walkthrough:** step through every example here, with the matching source lines highlighted, in the [Visual Lab: OpenMP basics](https://buddhi1.github.io/pdc-class/#/pdc/openmp-basics).
-
 The first OpenMP examples: parallel regions, thread ids, barriers, race conditions and their fixes, and loop work-sharing.
 
 ## Build and run

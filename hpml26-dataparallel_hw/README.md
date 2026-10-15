@@ -1,7 +1,5 @@
 # Data-Parallel Homework (HPML 2026)
 
-> **Animated walkthrough:** step through every example here, with the matching source lines highlighted, in the [Visual Lab: Homework](https://buddhi1.github.io/pdc-class/#/hpml/homework).
-
 Files for the data-parallel training assignment: a single-node, multi-GPU `MirroredStrategy` run of VGG16 on CIFAR-100.
 
 | File | Description |

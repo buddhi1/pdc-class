@@ -1,7 +1,5 @@
 # CUDA Performance Pitfalls (HPML)
 
-> **Animated walkthrough:** step through every example here, with the matching source lines highlighted, in the [Visual Lab: CUDA performance pitfalls](https://buddhi1.github.io/pdc-class/#/hpml/cuda-performance).
-
 Micro-benchmarks for three GPU performance problems: warp divergence, uncoalesced global memory access, and shared-memory bank conflicts. Each file's header comment has the exact `ncu` (Nsight Compute) command and a recorded profile from a compute-capability 7.5 GPU.
 
 ## Build and run

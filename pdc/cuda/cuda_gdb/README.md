@@ -1,7 +1,5 @@
 # CUDA Debugging and Profiling (PDC)
 
-> **Animated walkthrough:** step through every example here, with the matching source lines highlighted, in the [Visual Lab: cuda-gdb & profiling](https://buddhi1.github.io/pdc-class/#/pdc/cuda-debug).
-
 Material for a `cuda-gdb` and Nsight Systems demo. The sources are compiled with host and device debug information (`-g -G`).
 
 ## Build

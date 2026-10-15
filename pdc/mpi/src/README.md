@@ -1,7 +1,5 @@
 # MPI Examples (PDC)
 
-> **Animated walkthrough:** step through every example here, with the matching source lines highlighted, in the [Visual Lab: MPI](https://buddhi1.github.io/pdc-class/#/pdc/mpi).
-
 Numbered MPI programs that move from "hello world" through point-to-point messaging, collectives, non-blocking communication, communicators, and custom datatypes and operations.
 
 ## Build and run

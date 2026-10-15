@@ -1,7 +1,5 @@
 # Parallel and Distributed Computing (PDC)
 
-> **Animated walkthrough:** step through every example here, with the matching source lines highlighted, in the [Visual Lab: PDC course](https://buddhi1.github.io/pdc-class/#/pdc).
-
 Code examples for the PDC course: shared-memory programming (Pthreads, OpenMP), distributed-memory programming (MPI), GPU programming (CUDA, OpenMP offload), debugging, and distributed deep learning. Every source folder has its own README describing its examples.
 
 | Topic | Folder | Contents |

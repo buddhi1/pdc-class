@@ -1,7 +1,5 @@
 # Data-Parallel and Distributed Training (HPML)
 
-> **Animated walkthrough:** step through every example here, with the matching source lines highlighted, in the [Visual Lab: Data parallelism: one node](https://buddhi1.github.io/pdc-class/#/hpml/dp-single-node) and [many nodes](https://buddhi1.github.io/pdc-class/#/hpml/dp-multi-node).
-
 Hands-on scripts for scaling training from one GPU to many GPUs and many nodes, with TensorFlow `tf.distribute`, Keras 3 (TensorFlow, JAX and PyTorch backends) and PyTorch DDP. Most scripts use MNIST or random dummy data so that the distribution logic stays the focus.
 
 [`commandsForArc.txt`](commandsForArc.txt) has the cluster setup: `srun` for an interactive GPU or CPU allocation, `ml anaconda3`, and two conda environments. `tf310` holds the latest TensorFlow plus `tf_keras`, for single-node runs. `tf310_216` holds TensorFlow 2.16.1 plus `tf_keras`, for multi-node runs.

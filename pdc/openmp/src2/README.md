@@ -1,7 +1,5 @@
 # OpenMP Directives and Clauses, Part 2 (PDC)
 
-> **Animated walkthrough:** step through every example here, with the matching source lines highlighted, in the [Visual Lab: OpenMP directives & clauses](https://buddhi1.github.io/pdc-class/#/pdc/openmp-directives).
-
 One small program per OpenMP directive, clause or runtime function. Each file is self-contained and prints which thread did what, so you can see the semantics in the output.
 
 ## Build and run

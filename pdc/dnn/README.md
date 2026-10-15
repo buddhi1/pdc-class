@@ -1,7 +1,5 @@
 # Distributed Deep Learning (PDC)
 
-> **Animated walkthrough:** step through every example here, with the matching source lines highlighted, in the [Visual Lab: Distributed DNN training](https://buddhi1.github.io/pdc-class/#/pdc/dnn).
-
 Examples and slides on scaling DNN training across GPUs: TensorFlow data parallelism, PyTorch pipeline parallelism with mixed precision, and a guest talk on Horovod.
 
 ## `tensorflow_1_node-n_gpu/`: data parallelism on one node

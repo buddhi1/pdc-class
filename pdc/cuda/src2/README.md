@@ -1,7 +1,5 @@
 # CUDA Streams, Multi-GPU, Occupancy and Memory (PDC)
 
-> **Animated walkthrough:** step through every example here, with the matching source lines highlighted, in the [Visual Lab: CUDA streams, multi-GPU & occupancy](https://buddhi1.github.io/pdc-class/#/pdc/cuda-advanced).
-
 Programs adapted from the **NVIDIA CUDA Samples** (BSD license, see the file headers), covering features beyond basic kernels. Comments marked `// *****` are course annotations.
 
 ## Build and run

@@ -1,7 +1,5 @@
 # CUDA Basics (PDC)
 
-> **Animated walkthrough:** step through every example here, with the matching source lines highlighted, in the [Visual Lab: CUDA basics](https://buddhi1.github.io/pdc-class/#/pdc/cuda-basics).
-
 A first set of CUDA programs: launching kernels, mapping threads and blocks to data, shared-memory reduction, timing, and a CPU-vs-GPU matrix multiply. A slightly different HPML copy lives in [`hpml/cuda/src1`](../../../hpml/cuda/src1).
 
 ## Build and run

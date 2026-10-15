@@ -41,15 +41,6 @@ pdc-class/
 
 **Shared material.** The CUDA basics in `pdc/cuda/src` and `hpml/cuda/src1` are near-copies. The HPML version adds CUDA-event timing, `-O3` OpenMP builds and multi-GPU examples. `pdc/dnn/` holds the data-parallel hands-on slides and scripts that both courses use.
 
-## Interactive animations (Visual Lab)
-
-The [`docs/`](docs) folder is a ready-to-host **GitHub Pages site** with a step-by-step animation for every example in this repository &mdash; threads, MPI ranks, CUDA grids, tiled matrix multiplies, GPU memory behaviour, debugger sessions and distributed training. Each animation is linked to the source: the lines that cause the current step are highlighted beside it, and a collapsible left sidebar moves between examples.
-
-* Live site (after enabling Pages, see below): <https://buddhi1.github.io/pdc-class/>
-* Enable it once: **Settings &rarr; Pages &rarr; Deploy from a branch &rarr; `main` / `/docs`**.
-* Open it locally: `python3 -m http.server -d docs 8000` and visit <http://localhost:8000>, or just open `docs/index.html`.
-* Details, how to add an example, and the test scripts: [`docs/README.md`](docs/README.md).
-
 ## Prerequisites
 
 | For | You need |

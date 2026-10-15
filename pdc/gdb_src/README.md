@@ -1,7 +1,5 @@
 # GDB Debugging Exercises (PDC)
 
-> **Animated walkthrough:** step through every example here, with the matching source lines highlighted, in the [Visual Lab: Debugging with gdb](https://buddhi1.github.io/pdc-class/#/pdc/gdb).
-
 Four small C programs, each with a **deliberate bug**, for practising `gdb`. The comment at the top of each file names the bug. Hide it if you want students to find it themselves.
 
 ## Build

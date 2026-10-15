@@ -1,7 +1,5 @@
 # TensorFlow Introduction (HPML)
 
-> **Animated walkthrough:** step through every example here, with the matching source lines highlighted, in the [Visual Lab: TensorFlow introduction](https://buddhi1.github.io/pdc-class/#/hpml/tensorflow).
-
 Two Google Colab notebooks that introduce TensorFlow 2 and Keras before the distributed-training material.
 
 | Notebook | Contents |

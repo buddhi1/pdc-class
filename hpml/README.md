@@ -1,7 +1,5 @@
 # High-Performance Machine Learning (HPML)
 
-> **Animated walkthrough:** step through every example here, with the matching source lines highlighted, in the [Visual Lab: HPML course](https://buddhi1.github.io/pdc-class/#/hpml).
-
 Code for the HPML course. It covers GPU programming and performance for ML workloads, an introduction to TensorFlow, and scaling training across GPUs and nodes. Every source folder has its own README describing its examples.
 
 | Topic | Folder | Contents |

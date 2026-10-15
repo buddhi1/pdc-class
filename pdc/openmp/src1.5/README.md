@@ -1,7 +1,5 @@
 # OpenMP GPU Offload: CUDA Analogues (PDC)
 
-> **Animated walkthrough:** step through every example here, with the matching source lines highlighted, in the [Visual Lab: OpenMP GPU offload](https://buddhi1.github.io/pdc-class/#/pdc/openmp-offload).
-
 OpenMP `target` versions of the CUDA teaching kernels in [`../../cuda/src1.5`](../../cuda/src1.5). Each program mirrors the CUDA version's thread mapping, so students can compare the two programming models side by side. Every program checks its own result and prints `Execution: target device | host fallback` and `Verification: PASS | FAIL`.
 
 [`README.txt`](README.txt) has the Enterprise1-specific validation notes.
