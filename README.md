@@ -1,66 +1,82 @@
 # PDC and HPML Course Repository
 
-This repository contains source code, examples, and assignments for courses related to **Parallel and Distributed Computing (PDC)** and **High-Performance Machine Learning (HPML)**. The materials cover fundamental parallel programming paradigms and advanced techniques for scaling machine learning workloads.
+Source code, examples, slides and assignments for two courses:
 
-## Table of Contents
-* [Parallel and Distributed Computing (PDC)](#parallel-and-distributed-computing-pdc)
-* [High-Performance Machine Learning (HPML)](#high-performance-machine-learning-hpml)
-* [Prerequisites](#prerequisites)
-* [Getting Started](#getting-started)
+- **Parallel and Distributed Computing (PDC):** shared-memory, distributed-memory and GPU programming. Lives in [`pdc/`](pdc).
+- **High-Performance Machine Learning (HPML):** GPU performance for ML and scaling DNN training across GPUs and nodes. Lives in [`hpml/`](hpml) and [`hpml26-dataparallel_hw/`](hpml26-dataparallel_hw).
 
----
+Each course folder has a README with a topic map, and **every source folder has its own README** describing what each example does and the important functions and APIs it uses.
 
-## Parallel and Distributed Computing (PDC)
-The PDC section focuses on the foundations of concurrent execution and shared/distributed memory systems. Key topics include:
+## Repository layout
 
-* **Pthreads:** Low-level shared memory programming using POSIX threads for fine-grained concurrency control.
-* **OpenMP:** Directive-based parallel programming for multi-core systems, focusing on loop parallelization and synchronization.
-* **MPI (Message Passing Interface):** Distributed memory programming for communication between multiple nodes in a cluster.
-* **CUDA Basics:** Introduction to GPU computing, including kernel execution, thread hierarchies (blocks/grids), and memory management.
+```
+pdc-class/
+├── pdc/                          # PDC course
+│   ├── gdb_src/                  #   gdb exercises (planted bugs)
+│   ├── pthreads/src/             #   POSIX threads
+│   ├── openmp/src1/              #   OpenMP basics
+│   ├── openmp/src2/              #   OpenMP directives and clauses
+│   ├── openmp/src1.5/            #   OpenMP GPU offload (CUDA analogues)
+│   ├── mpi/src/                  #   MPI
+│   ├── cuda/src/                 #   CUDA basics                       (shared with HPML)
+│   ├── cuda/src1.5/              #   CUDA matrix-multiply progression  (shared with HPML)
+│   ├── cuda/src2/                #   CUDA streams, multi-GPU, occupancy (NVIDIA samples)
+│   ├── cuda/cuda_gdb/            #   cuda-gdb and Nsight Systems demo
+│   └── dnn/                      #   distributed DNN training          (shared with HPML)
+├── hpml/                         # HPML course
+│   ├── cuda/src1/                #   CUDA fundamentals and multi-GPU matrix multiply
+│   ├── cuda/src2/                #   warp divergence, coalescing, bank conflicts
+│   ├── tensorflow/               #   TensorFlow / Keras intro notebooks
+│   ├── data_parallel/            #   tf.distribute, Keras 3 (JAX), PyTorch DDP
+│   └── faq.txt                   #   cluster FAQ (copying files to the cluster)
+└── hpml26-dataparallel_hw/       # HPML 2026 data-parallel homework
+```
 
-## High-Performance Machine Learning (HPML)
-The HPML section bridges the gap between systems programming and deep learning, focusing on optimizing and scaling model training.
+## Course guides
 
-* **Advanced CUDA:** Optimization techniques such as shared memory tiling, vectorized memory access, and performance profiling for ML kernels.
-* **TensorFlow Introduction:** Foundations of computational graphs, tensors, and building neural networks.
-* **Data Parallelism in TensorFlow:** Implementing `tf.distribute.Strategy` to scale training across multiple GPUs and distributed workers.
+| Course | Guide | Topics |
+|--------|-------|--------|
+| PDC | [`pdc/README.md`](pdc/README.md) | gdb, Pthreads, OpenMP (CPU and offload), MPI, CUDA, cuda-gdb, distributed DNN |
+| HPML | [`hpml/README.md`](hpml/README.md) | CUDA fundamentals and performance, TensorFlow, data/model parallelism, multi-node training |
 
----
+**Shared material.** The CUDA basics in `pdc/cuda/src` and `hpml/cuda/src1` are near-copies. The HPML version adds CUDA-event timing, `-O3` OpenMP builds and multi-GPU examples. `pdc/dnn/` holds the data-parallel hands-on slides and scripts that both courses use.
+
+## Interactive animations (Visual Lab)
+
+The [`docs/`](docs) folder is a ready-to-host **GitHub Pages site** with a step-by-step animation for every example in this repository &mdash; threads, MPI ranks, CUDA grids, tiled matrix multiplies, GPU memory behaviour, debugger sessions and distributed training. Each animation is linked to the source: the lines that cause the current step are highlighted beside it, and a collapsible left sidebar moves between examples.
+
+* Live site (after enabling Pages, see below): <https://buddhi1.github.io/pdc-class/>
+* Enable it once: **Settings &rarr; Pages &rarr; Deploy from a branch &rarr; `main` / `/docs`**.
+* Open it locally: `python3 -m http.server -d docs 8000` and visit <http://localhost:8000>, or just open `docs/index.html`.
+* Details, how to add an example, and the test scripts: [`docs/README.md`](docs/README.md).
 
 ## Prerequisites
-To run the examples in this repository, you will generally need:
 
-* **C/C++ Compiler:** GCC or Clang.
-* **MPI Library:** OpenMPI or MPICH.
-* **NVIDIA CUDA Toolkit:** Required for GPU-accelerated code.
-* **Python 3.x:** With `tensorflow` and `numpy` installed.
+| For | You need |
+|-----|----------|
+| Pthreads, OpenMP, gdb | GCC (or Clang) and GDB |
+| MPI | Open MPI or MPICH (`mpicc`, `mpirun`) |
+| CUDA | NVIDIA GPU and CUDA Toolkit (`nvcc`). Optional: `cuda-gdb`, `nsys`, `ncu` |
+| OpenMP offload | GCC built with NVPTX offloading |
+| Python / ML | Python 3.10+, with `tensorflow[and-cuda]`, `tf_keras`, `keras`, `torch`, `jax[cuda]` and `tensorflow_datasets`, depending on the example |
 
-## Getting Started
+## Getting started
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/buddhi1/pdc-class.git
-    cd pdc-class
-    ```
+```bash
+git clone https://github.com/buddhi1/pdc-class.git
+cd pdc-class
 
-2.  **Compile C/C++ Examples:**
-    * **For OpenMP:**
-        ```bash
-        gcc -fopenmp source.c -o output
-        ```
-    * **For MPI:**
-        ```bash
-        mpicc source.c -o output
-        ```
-    * **For CUDA:**
-        ```bash
-        nvcc kernel.cu -o output
-        ```
+# C / CUDA examples: most folders have a Makefile
+cd pdc/openmp/src1 && make && OMP_NUM_THREADS=4 ./hello
+cd pdc/mpi/src     && make && mpirun -np 4 ./1-hello
+cd pdc/cuda/src    && make && ./vecsum-mb-mb
 
-3.  **Run TensorFlow Scripts:**
-    ```bash
-    python3 hpml/tensorflow_intro.py
-    ```
+# Python examples
+python hpml/data_parallel/1_node/keras/mnist_multigpu.py
+```
+
+Notebooks in `hpml/tensorflow/` and `hpml/data_parallel/data_distribution/` are meant for Google Colab or Jupyter. Cluster-specific setup (SLURM `srun`/`sbatch`, conda environments) is in [`hpml/data_parallel/commandsForArc.txt`](hpml/data_parallel/commandsForArc.txt) and in the `*.sh` / `*.job` scripts.
 
 ## License
-This project is intended for educational purposes. Please refer to the specific license file in the repository for more details.
+
+MIT License. See [`LICENSE`](LICENSE). The files in `pdc/cuda/src2/` are adapted from NVIDIA CUDA Samples and keep their original BSD license headers.

@@ -6,6 +6,7 @@ pdc/cuda/src/*
 pdc/cuda/src1.5/*
 pdc/cuda/src2/*
 pdc/mpi/src/*
+docs
 
 !pdc/pthreads/src/*.c
 !pdc/openmp/src1/*.c
@@ -46,3 +47,6 @@ hpml/data_parallel/1_node/keras/training_1
 hpml/data_parallel/1_node/keras3/tf
 !hpml/data_parallel/1_node/keras3/tf/tf_multigpu.py
 hpml/data_parallel/n_nodes/sync/__pycache__
+
+# keep per-folder READMEs inside the ignored source folders above
+!README.md
