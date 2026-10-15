@@ -70,6 +70,8 @@ __global__ static void reduceKernel(float *d_Result, float *d_Input, int N)
     const int threadN = gridDim.x * blockDim.x;
     float     sum     = 0;
 
+    // threadN = 32*256 = 8,192 for 2 GPUs setup in each GPU (total 32*256*2). 
+    // Each thread handles 33,554,432 / 2 / threadN = 16,777,216/8,192 = 2,048
     for (int pos = tid; pos < N; pos += threadN)
         sum += d_Input[pos];
 

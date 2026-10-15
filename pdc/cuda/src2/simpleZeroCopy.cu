@@ -225,6 +225,7 @@ int main(int argc, char **argv)
 
     errorNorm = (float)sqrt((double)errorNorm);
     refNorm   = (float)sqrt((double)refNorm);
+    printf("errorNorm=%f refNorm=%f\n", errorNorm, refNorm);
 
     /* Memory clean up */
 
