@@ -7,6 +7,8 @@ pdc/cuda/src1.5/*
 pdc/cuda/src2/*
 pdc/mpi/src/*
 docs
+logo
+opencorelab
 
 !pdc/pthreads/src/*.c
 !pdc/openmp/src1/*.c
