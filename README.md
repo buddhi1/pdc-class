@@ -7,6 +7,21 @@ Source code, examples, slides and assignments for two courses:
 
 Each course folder has a README with a topic map, and **every source folder has its own README** describing what each example does and the important functions and APIs it uses.
 
+## See the code run: Open Core Lab
+
+<p align="center">
+  <a href="https://buddhi1.github.io/opencorelab/"><img src="https://buddhi1.github.io/opencorelab/img/ocl-logo-horizontal.svg" alt="Open Core Lab: parallel computing for all" width="440"></a>
+</p>
+
+Parallel code is hard to picture. Threads interleave, messages fly between ranks, and thousands of GPU threads run at once. **[Open Core Lab](https://buddhi1.github.io/opencorelab/)** animates every example in this repository step by step, and each step highlights the exact lines of code it explains.
+
+- **Every example, animated.** 140 examples covering Pthreads, OpenMP, MPI, CUDA and distributed training, in the order the courses teach them.
+- **See what you can't see in a terminal.** Race conditions, barriers, blocks and grids, shared-memory tiles, MPI collectives and multi-GPU training, one step at a time.
+- **Code and animation side by side.** Click a line of code to jump to its step. Each example ends with "Try it" ideas to test yourself.
+- **Nothing to install.** It runs in any browser, including on your phone, so you can review before a lab or an exam.
+
+**Help us make it better.** The first time you open the site, it asks whether you'd like to share anonymous usage and feedback. Choosing **Sure** shows us which examples help, where people get stuck and what to fix next, without names, emails or anything that identifies you. You can also rate each example when you reach its last step, and fill in the short [survey](https://buddhi1.github.io/opencorelab/#/feedback). Every answer goes into improving the examples for you and the next class. You can change your mind or delete your data at any time from [Privacy & data](https://buddhi1.github.io/opencorelab/#/privacy). Saying no doesn't change anything about the site.
+
 ## Repository layout
 
 ```
